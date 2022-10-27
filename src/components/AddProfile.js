@@ -1,5 +1,8 @@
-import { Button } from "bootstrap";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/auth.context";
+
+const API_URL = "http://localhost:5005";
 
 function AddProfile() {
   const [headline, setHeadline] = useState("");
@@ -7,9 +10,20 @@ function AddProfile() {
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
   const [profileImg, setProfileImg] = useState("");
+ 
+  const { user} = useContext(AuthContext);
+
+  const storedToken = localStorage.getItem("authToken");
 
   const handelSubmit = (e) => {
     e.preventDefault();
+    
+    const profile = {headline, basedIn, technologies, githubUrl , profileImg}
+
+    axios.post(`${API_URL}/api/create-profile/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}`}}, profile)
+    .then((response) => {
+      console.log(response)
+    })
   };
 
   return (
@@ -69,7 +83,7 @@ function AddProfile() {
             onChange={(e) => setProfileImg(e.target.value)}
           />
         </label>
-        <Button>Submit</Button>
+        <button>Submit</button>
       </form>
     </div>
   );
