@@ -19,7 +19,9 @@ function Navbar(){
           </Link>        
 
           <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
+          <span>{user && `Welcome ${user.name}`}</span>
+          <Link to={`/user/${user._id}`}><button>Profile</button></Link>
+
         </>
       )}
  
