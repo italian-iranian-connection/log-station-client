@@ -9,7 +9,8 @@ import LoginPage from "./pages/LoginPage";
 // import IsPrivate from './components/IsPrivate';
 // import IsAnon from "./components/IsAnon";
 import UserPage from './pages/UserPage';
-import AddProfile from './components/AddProfile';
+import AddProfile from './components/user/AddProfile';
+import ProfileCard from './components/user/ProfileCard';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />  */}
 
         <Route path="/projects" element={ <ProjectListPage /> } />
-        <Route path="/user/:userId/create-profile" element={ <AddProfile /> } />
+        <Route path="/user/:userId/" element={ <UserPage /> } />
+
         <Route path="/signup" element={ <SignupPage /> }  />
         <Route path="/login" element={ <LoginPage /> } />
       </Routes>

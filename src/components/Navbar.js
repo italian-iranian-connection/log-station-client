@@ -20,7 +20,7 @@ function Navbar(){
 
           <button onClick={logOutUser}>Logout</button>
           <span>{user && `Welcome ${user.name}`}</span>
-          {/* <Link to={`/user/${user._id}`}><button>Profile</button></Link> */}
+          <button>Profile</button>
 
         </>
       )}

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/auth.context";
+import { AuthContext } from "../../context/auth.context";
+
 
 const API_URL = "http://localhost:5005";
 
@@ -11,6 +12,7 @@ function AddProfile() {
   const [githubUrl, setGithubUrl] = useState("");
   const [profileImg, setProfileImg] = useState("");
  
+
   const { user} = useContext(AuthContext);
 
   const storedToken = localStorage.getItem("authToken");
@@ -18,16 +20,18 @@ function AddProfile() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const profile = {headline, basedIn, technologies, githubUrl , profileImg}
+    const profile = {headline, basedIn, technologies, githubUrl , profileImg};
+    console.log()
 
-    axios.put(`${API_URL}/api/user/${user._id}/`, { headers: { Authorization: `Bearer ${storedToken}`}}, profile)
+    axios.put(`${API_URL}/api/user/${user._id}/`, profile)
     .then((response) => {
-      console.log(response)
+      console.log(response);
     })
   };
 
   return (
     <div className="AddProfile">
+
       <form className="form" onSubmit={handleSubmit}>
         <label>
           Headline:
