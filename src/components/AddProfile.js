@@ -19,10 +19,11 @@ function AddProfile() {
     e.preventDefault();
     
     const profile = {headline, basedIn, technologies, githubUrl , profileImg}
+    console.log(profile)
 
-    axios.put(`${API_URL}/api/user/${user._id}/`, { headers: { Authorization: `Bearer ${storedToken}`}}, profile)
+    axios.put(`${API_URL}/api/user/${user._id}/`, profile)  // { headers: { Authorization: `Bearer ${storedToken}`}}
     .then((response) => {
-      console.log(response)
+      console.log(response.data)
     })
   };
 

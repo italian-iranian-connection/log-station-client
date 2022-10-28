@@ -10,10 +10,12 @@ import LoginPage from "./pages/LoginPage";
 // import IsAnon from "./components/IsAnon";
 import UserPage from './pages/UserPage';
 import AddProfile from './components/AddProfile';
+import AddProject from './components/AddProject';
 
 function App() {
   return (
     <div className="App">
+    
       <Navbar />
       <Routes>
         <Route path="/" element={ <HomePage /> } />
@@ -21,14 +23,15 @@ function App() {
         <Route path="/createprofile" element={ <IsPrivate> <UserPage /> </IsPrivate> } />
         <Route path="/signup" element={ <IsAnon> <SignupPage /> </IsAnon> } />
         <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />  */}
-
+        <Route path='/projects' element = { <AddProject /> }/>
         <Route path="/projects" element={ <ProjectListPage /> } />
         <Route path="/user/:userId/create-profile" element={ <AddProfile /> } />
         <Route path="/signup" element={ <SignupPage /> }  />
         <Route path="/login" element={ <LoginPage /> } />
       </Routes>
+      </div>
 
-    </div>
+    
   );
 }
 
