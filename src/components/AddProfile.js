@@ -15,12 +15,12 @@ function AddProfile() {
 
   const storedToken = localStorage.getItem("authToken");
 
-  const handelSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
     const profile = {headline, basedIn, technologies, githubUrl , profileImg}
 
-    axios.post(`${API_URL}/api/user/${user._id}/create-profile`, { headers: { Authorization: `Bearer ${storedToken}`}}, profile)
+    axios.put(`${API_URL}/api/user/${user._id}/`, { headers: { Authorization: `Bearer ${storedToken}`}}, profile)
     .then((response) => {
       console.log(response)
     })
@@ -28,7 +28,7 @@ function AddProfile() {
 
   return (
     <div className="AddProfile">
-      <form className="form" onSubmit={handelSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <label>
           Headline:
           <input
@@ -37,7 +37,7 @@ function AddProfile() {
             value={headline}
             onChange={(e) => setHeadline(e.target.value)}
             placeholder="Say something about yourself..."
-            required
+            
           />
         </label>
 
@@ -59,7 +59,7 @@ function AddProfile() {
             name="technologies"
             value={technologies}
             onChange={(e) => setTechnologies(e.target.value)}
-            required
+            
           />
         </label>
 
@@ -70,7 +70,7 @@ function AddProfile() {
             name="githubUrl"
             value={githubUrl}
             onChange={(e) => setGithubUrl(e.target.value)}
-            required
+            
           />
         </label>
 
