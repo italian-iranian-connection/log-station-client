@@ -1,3 +1,6 @@
+import { AuthContext } from '../context/auth.context';
+import { useContext } from "react";
+
 function ProjectDetails({
   name,
   description,
@@ -6,8 +9,10 @@ function ProjectDetails({
   gitRepoUrl,
   status,
   screenshoot,
+  userId
 }) {
-  console.log(deploymentUrl);
+
+  const { isLoggedIn, user } = useContext(AuthContext);
 
   return (
     <div className="ProjectDetails card m-2 p-2">
@@ -57,6 +62,11 @@ function ProjectDetails({
           <i className="fa-brands fa-github"></i>
         </a>
       </h3>
+      {(isLoggedIn && user._id === userId) && 
+        <div className="m-1">
+          <button className="btn btn-dark">Update Your Project</button> 
+        </div>
+        }
     </div>
   );
 }

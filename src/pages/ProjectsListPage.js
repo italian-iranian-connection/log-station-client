@@ -6,7 +6,7 @@ import ProjectCard from "../components/ProjectCard";
 import { AuthContext } from '../context/auth.context';
 import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
-import SignupPage from "./SignupPage";
+
 
 const API_URL = "http://localhost:5005";
 

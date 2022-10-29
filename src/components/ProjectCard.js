@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from '../context/auth.context';
+import { useContext } from "react";
 
-function ProjectCard({ name, technologies, status, screenshoot, _id }) {
+function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
   const style = { textDecoration: "none", color: "black" };
+
+  const { isLoggedIn, user } = useContext(AuthContext);
+
   return (
     <div className="ProjectCard card m-2 p-2">
       <Link to={`/projects/${_id}`} style={style}>
@@ -12,6 +17,7 @@ function ProjectCard({ name, technologies, status, screenshoot, _id }) {
               alt={name}
               className="card-img-start m-4"
               width="200px"
+              max-height="200px"
             />
           </div>
 
@@ -29,6 +35,11 @@ function ProjectCard({ name, technologies, status, screenshoot, _id }) {
           </div>
         </div>
       </Link>
+        {(isLoggedIn && user._id === userId) && 
+        <div className="m-1">
+          <button className="btn btn-dark">Update Your Project</button> 
+        </div>
+        }
     </div>
   );
 }
