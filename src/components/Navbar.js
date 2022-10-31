@@ -23,7 +23,7 @@ console.log(user)
             <button>Projects</button>
           </Link>        
 
-          <button onClick={logOutUser}>Logout</button>
+          <Link to="/"><button onClick={logOutUser}>Logout</button></Link> 
           <span>{user && `Welcome ${user.name}`}</span>
           <span>{user && <Link to={`/user/${user._id}`}><button>Profile</button></Link>}</span>
 

@@ -53,7 +53,7 @@ function ProjectsListPage(){
                     isLoggedIn
                     ? 
                     <div className="col">
-                    <AddProject />   {/*   if no profile yet return AddProfile component */}
+                    <AddProject refreshProjects={getAllProjects} />   {/*   if no profile yet return AddProfile component */}
                     </div>
                     : 
                     <div className="col mt-2">

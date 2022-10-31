@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
-function AddProject() {
+function AddProject({getAllProjects}) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [technology, setTechnology] = useState("")
