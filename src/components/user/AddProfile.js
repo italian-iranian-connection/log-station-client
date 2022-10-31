@@ -12,13 +12,10 @@ function AddProfile({ refreshPage }) {
   const [githubUrl, setGithubUrl] = useState("");
 
   const [screenshoot, setScreenshoot] = useState("");
-  // const [profileImg, setProfileImg] = useState("https://www.canva.com/templates/EAEeKH905XY-yellow-and-black-gamer-grunge-twitch-profile-picture/");
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const { userId } = useParams();
-
-  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = (e) => {
     e.preventDefault();

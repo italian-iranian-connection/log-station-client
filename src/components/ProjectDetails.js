@@ -1,4 +1,6 @@
-
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 function ProjectDetails({
   name,
@@ -8,7 +10,11 @@ function ProjectDetails({
   gitRepoUrl,
   status,
   screenshoot,
+  userId
 }) {
+
+  const { user } = useContext(AuthContext);
+  const style = { textDecoration: "none", color: "fuchsia" };
 
   return (
     <div className="ProjectDetails card m-2 p-2">
@@ -59,6 +65,13 @@ function ProjectDetails({
           <i className="fa-brands fa-github"></i>
         </a>
       </h3>
+      {user?._id && user._id === userId && (
+            <div className="m-1">
+            <Link to="/project/edit/:projectId" style={style} >
+              <button className="btn btn-dark">Update Your Project</button>
+              </Link>
+            </div>
+          )}
     </div>
   );
 }

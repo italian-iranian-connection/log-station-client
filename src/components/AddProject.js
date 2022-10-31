@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
-function AddProject({getAllProjects}) {
+function AddProject() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [technology, setTechnology] = useState("")
@@ -17,12 +17,13 @@ function AddProject({getAllProjects}) {
     const navigate = useNavigate('/projects');
 
     const handleProjectForm = (e) => {
+      e.preventDefault()
       const newProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
       const storedToken = localStorage.getItem("authToken")   
       axios.post(`${API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
       console.log("finally......", response.data);
-      navigate('/projects');
+      //navigate('/projects');
     })
     }
 
@@ -37,6 +38,7 @@ function AddProject({getAllProjects}) {
     } 
 
     const handleFileUpload = (e) => {
+        e.preventDefault()
         console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
         uploadData.append("screenshoot", e.target.files[0])

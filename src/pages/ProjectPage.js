@@ -12,16 +12,13 @@ const API_URL = "http://localhost:5005";
 function ProjectPage() {
   const [projectDetails, setProjectDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const [userDetails, setUserDetails] = useState(null)
+  const [userDetails, setUserDetails] = useState(null);
   const { projectId } = useParams();
   const storedToken = localStorage.getItem("authToken");
 
-    
-  
   const { user } = useContext(AuthContext);
 
   const getProjectDetails = () => {
-    
     axios
       .get(`${API_URL}/api/projects/${projectId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -32,19 +29,20 @@ function ProjectPage() {
       });
   };
 
-  const getUser = () => {
-
-    axios.get(`${API_URL}/api/user/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-      .then(response => {
-         setUserDetails(response.data)
+  const getUser = (userId) => {
+    axios
+      .get(`${API_URL}/api/user/${projectDetails.userId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setUserDetails(response.data);
       })
       .catch((error) => console.log(error));
- }
+  };
 
   useEffect(() => {
     getProjectDetails();
     getUser()
-    console.log(user);
   }, []);
 
   return (
@@ -56,21 +54,14 @@ function ProjectPage() {
         aria-label="Loading Spinner"
         data-testid="loader"
       />
-
-      {projectDetails?._id && (
-        <div className="row">
+        <div className="row mt-2">
           <div className="col">
-            <ProjectDetails {...projectDetails} />
+           {projectDetails?._id && <ProjectDetails {...projectDetails} /> }
           </div>
           <div className="col">
-            {(user._id === projectDetails.userId && userDetails.profile) ? (
-              <EditProject project={projectDetails} />
-            ) : (
-              <ProfileCard {...userDetails.profile} profileData={userDetails} />
-            )}
+            {userDetails?.profile && <ProfileCard {...userDetails.profile} profileData={userDetails} />}  {/*   <EditProject project={projectDetails} /> */}
           </div>
         </div>
-      )}
     </div>
   );
 }
