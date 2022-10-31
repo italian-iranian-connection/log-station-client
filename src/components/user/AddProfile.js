@@ -8,6 +8,7 @@ const API_URL = "http://localhost:5005";
 function AddProfile({ refreshPage }) {
   const [headline, setHeadline] = useState("");
   const [basedIn, setBasedIn] = useState("");
+  const [technology, setTechnology] = useState("")
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
 
@@ -38,13 +39,21 @@ function AddProfile({ refreshPage }) {
       });
   };
 
+  const addTecnology = (technology, e) => {
+    e.preventDefault()
+    if(technology){  
+    setTechnologies((prevTechnologies) => {
+      const newArr = [...prevTechnologies, technology]
+      setTechnology("")
+      return newArr
+    })}
+  }
+
   const handleFileUpload = (e) => {
     console.log("The file to be uploaded is: ", e.target.files[0]);
     const uploadData = new FormData();
     uploadData.append("screenshoot", e.target.files[0]);
     axios.post(`${API_URL}/api/upload`, uploadData).then((response) => {
-      console.log(response);
-      console.log(response.data.screenshoot);
       setScreenshoot(response.data.screenshoot);
     });
   };
@@ -84,13 +93,10 @@ function AddProfile({ refreshPage }) {
           <div className="row g-3 align-items-center">
             <label className="form-label">
               Techologies you know (or want to practice):
-              <input
-                className="form-control m-2"
-                type="text"
-                name="technologies"
-                value={technologies}
-                onChange={(e) => setTechnologies(e.target.value)}
-              />
+              <input className="form-control m-2" type="text" name="technologies" value={technology} onChange={(e)=>{setTechnology(e.target.value)}} placeholder="React..."/>
+       <button className="btn btn-dark" onClick={(e) => {addTecnology(technology, e)}} >Add</button> 
+      <p>{technologies.map((tech,index)=>{ return <span key={index}>{tech} </span>})}</p>
+
             </label>
           </div>
 

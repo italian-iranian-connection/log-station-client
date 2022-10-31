@@ -15,6 +15,7 @@ const API_URL = "http://localhost:5005";
 function EditProfilePage() {
   const [headline, setHeadline] = useState("");
   const [basedIn, setBasedIn] = useState("");
+  const [technology, setTechnology] = useState("");
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
   const [screenshoot, setScreenshoot] = useState("");
@@ -52,6 +53,17 @@ function EditProfilePage() {
     });
   };
 
+  const addTecnology = (technology, e) => {
+    e.preventDefault();
+    if (technology) {
+      setTechnologies((prevTechnologies) => {
+        const newArr = [...prevTechnologies, technology];
+        setTechnology("");
+        return newArr;
+      });
+    }
+  };
+
   const deleteProfile = () => {
     const profile = {};
     axios
@@ -66,13 +78,12 @@ function EditProfilePage() {
   const handleFileUpload = (e) => {
     console.log("The file to be uploaded is: ", e.target.files[0]);
     const uploadData = new FormData();
-    uploadData.append("screenshoot", e.target.files[0])
-    axios.post(`${API_URL}/api/upload`, uploadData)
-    .then((response)=>{
-      console.log(response.data.screenshoot)
-    setScreenshoot(response.data.screenshoot)
-  })
-} 
+    uploadData.append("screenshoot", e.target.files[0]);
+    axios.post(`${API_URL}/api/upload`, uploadData).then((response) => {
+      console.log(response.data.screenshoot);
+      setScreenshoot(response.data.screenshoot);
+    });
+  };
 
   return (
     <>
@@ -94,84 +105,100 @@ function EditProfilePage() {
       <div className="EditProfile">
         <div className="container">
           <div className="container card m-5 p-5" style={{ maxWwidth: "50vw" }}>
+            <div className="col col-lg-6" style={{ marginLeft: "50%" }}>
+              <form className="form mt-2 p-3" onSubmit={handleFormSubmit}>
+                <div className="row g-3 align-items-center">
+                  <label className="form-label">
+                    Headline:
+                    <input
+                      className="form-control m-2"
+                      type="text"
+                      name="headline"
+                      value={headline}
+                      onChange={(e) => setHeadline(e.target.value)}
+                    />
+                  </label>
+                </div>
 
-          <div className="col col-lg-6" style={{ marginLeft: "50%" }}>
+                <div className="row g-3 align-items-center">
+                  <label className="form-label">
+                    Based in:
+                    <input
+                      className="form-control m-2"
+                      type="text"
+                      name="basedIn"
+                      value={basedIn}
+                      onChange={(e) => setBasedIn(e.target.value)}
+                    />
+                  </label>
+                </div>
 
-            <form className="form mt-2 p-3" onSubmit={handleFormSubmit}>
-              <div className="row g-3 align-items-center">
-                <label className="form-label">
-                  Headline:
-                  <input
-                    className="form-control m-2"
-                    type="text"
-                    name="headline"
-                    value={headline}
-                    onChange={(e) => setHeadline(e.target.value)}
-                  />
-                </label>
+                <div className="row g-3 align-items-center">
+                  <label className="form-label">
+                    Techologies you know (or want to practice):
+                    <input
+                      className="form-control m-2"
+                      type="text"
+                      name="technologies"
+                      value={technology}
+                      onChange={(e) => {
+                        setTechnology(e.target.value);
+                      }}
+                      placeholder="Anything new?"
+                    />
+                    <button
+                      className="btn btn-dark"
+                      onClick={(e) => {
+                        addTecnology(technology, e);
+                      }}
+                    >
+                      Add
+                    </button>
+                    <p>
+                      {technologies.map((tech, index) => {
+                        return <span key={index}>✩{tech} </span>;
+                      })}
+                    </p>
+                  </label>
+                </div>
+
+                <div className="row g-3 align-items-center">
+                  <label className="form-label">
+                    Your GitHub profile:
+                    <input
+                      className="form-control m-2"
+                      type="text"
+                      name="githubUrl"
+                      value={githubUrl}
+                      onChange={(e) => setGithubUrl(e.target.value)}
+                    />
+                  </label>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">
+                    Profile Picture:
+                    <input
+                      className="form-control"
+                      type="file"
+                      name="screenshoot"
+                      onChange={(e) => {
+                        handleFileUpload(e);
+                      }}
+                    />
+                  </label>
+                </div>
+
+                <button type="submit" className="btn btn-warning">
+                  Submit Profile
+                </button>
+              </form>
+
+              <div>
+                <button className="btn btn-danger" onClick={deleteProfile}>
+                  Delete Profile
+                </button>
               </div>
-
-              <div className="row g-3 align-items-center">
-                <label className="form-label">
-                  Based in:
-                  <input
-                    className="form-control m-2"
-                    type="text"
-                    name="basedIn"
-                    value={basedIn}
-                    onChange={(e) => setBasedIn(e.target.value)}
-                  />
-                </label>
-              </div>
-
-              <div className="row g-3 align-items-center">
-                <label className="form-label">
-                  Techologies you know (or want to practice):
-                  <input
-                    className="form-control m-2"
-                    type="text"
-                    name="technologies"
-                    value={technologies}
-                    onChange={(e) => setTechnologies(e.target.value)}
-                  />
-                </label>
-              </div>
-
-              <div className="row g-3 align-items-center">
-                <label className="form-label">
-                  Your GitHub profile:
-                  <input
-                    className="form-control m-2"
-                    type="text"
-                    name="githubUrl"
-                    value={githubUrl}
-                    onChange={(e) => setGithubUrl(e.target.value)}
-                  />
-                </label>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">
-                  Profile Picture:
-                  <input
-                    className="form-control"
-                    type="file"
-                    name="screenshoot"
-                    onChange={(e)=>{handleFileUpload(e)}}
-                  />
-                </label>
-              </div>
-
-              <button type="submit" className="btn btn-warning">
-                Submit Profile
-              </button>
-            </form>
-
-            <div>
-              <button className="btn btn-danger" onClick={deleteProfile}>
-                Delete Profile
-              </button>
-            </div>
             </div>
           </div>
         </div>

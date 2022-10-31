@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 
 function ProfileCard({
   screenshoot,
@@ -6,40 +5,33 @@ function ProfileCard({
   basedIn,
   technologies,
   githubUrl,
-  userId,
-  name
 }) {
   return (
     <section className="ProfileCard">
-      <div
-        className="card"
-        style={{
-          width: "30rem",
-          margin: "20px 50px",
-          padding: "10px",
-          textAlign: "left",
-        }}
-      >
-        <div className="card-body">
-        <h4>{name}</h4>
-          <img src={screenshoot} alt="Profile" />
+      <div className="card p-2">
+          <img src={screenshoot} alt="Profile" className="card-img-top p-2 mb-4"/>
 
-          <h4 className="card-title">Headline: {headline}</h4>
-          <h4 className="card-subtitle mb-2 text-muted">Based in: {basedIn}</h4>
-          <h4 className="card-subtitle mb-2 text-muted">
-            Tech Skills: {technologies}
-          </h4>
-          <h4 className="card-subtitle mb-2 text-muted">
-            GitHub URL: {githubUrl}
-          </h4>
+          <h4 className="card-title text-capitalize">{headline}</h4>
+          <h5 className="card-subtitle mb-2 text-muted">Based in: {basedIn}</h5>
+          <h5 className="card-subtitle mb-2 text-muted">
+            Tech Skills: 
+            {technologies.map((tech, index) => {
+              return <span key={index}> ✩{tech} </span>
+            })}
+          </h5>
+          <h3 className="text-center">
+        <a
+          href={githubUrl}
+          className="text-decoration-none"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa-brands fa-github"></i>
+        </a>
+        
+      </h3>
+      <span className="text-center text-muted">{githubUrl}</span>
         </div>
-
-        <div>
-          <Link to={`/user/edit/${userId}`}>
-            <button className="btn btn-primary">Edit Profile</button>
-          </Link>
-        </div>
-      </div>
     </section>
   );
 }
