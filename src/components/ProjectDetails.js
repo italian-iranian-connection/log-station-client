@@ -1,5 +1,4 @@
-import { AuthContext } from '../context/auth.context';
-import { useContext } from "react";
+
 
 function ProjectDetails({
   name,
@@ -9,10 +8,7 @@ function ProjectDetails({
   gitRepoUrl,
   status,
   screenshoot,
-  userId
 }) {
-
-  const { isLoggedIn, user } = useContext(AuthContext);
 
   return (
     <div className="ProjectDetails card m-2 p-2">
@@ -43,7 +39,8 @@ function ProjectDetails({
 
       <div className="border">
         <h5 className="card-text p-1">Techologies: </h5>
-        {technologies.map((tech, index) => {
+        
+        {technologies && technologies.map((tech, index) => {
           return <span key={index}>✩{tech} </span>;
         })}
       </div>
@@ -62,11 +59,6 @@ function ProjectDetails({
           <i className="fa-brands fa-github"></i>
         </a>
       </h3>
-      {(isLoggedIn && user._id === userId) && 
-        <div className="m-1">
-          <button className="btn btn-dark">Update Your Project</button> 
-        </div>
-        }
     </div>
   );
 }

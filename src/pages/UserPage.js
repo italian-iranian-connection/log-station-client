@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";                     
 import { AuthContext } from "../context/auth.context";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AddProfile from "../components/user/AddProfile";
+import ProfileCard from "../components/user/ProfileCard";
 
 
 const API_URL = "http://localhost:5005";
@@ -70,40 +71,7 @@ function UserPage() {
           )}
 
           {userDetails?.profile?.headline && (
-            <section>
-              <div
-                className="card"
-                style={{
-                  width: "30rem",
-                  margin: "20px 50px",
-                  padding: "10px",
-                  textAlign: "left",
-                }}
-              >
-
-                <div className="card-body">
-                  <img src={userDetails.profile.profileImg} alt="Profile" />
-                  <h4 className="card-title">
-                    Headline: {userDetails.profile.headline}
-                  </h4>
-                  <h4 className="card-subtitle mb-2 text-muted">
-                    Based in: {userDetails.profile.basedIn}
-                  </h4>
-                  <h4 className="card-subtitle mb-2 text-muted">
-                    Tech Skills: {userDetails.profile.technologies}
-                  </h4>
-                  <h4 className="card-subtitle mb-2 text-muted">
-                    GitHub URL: {userDetails.profile.githubUrl}
-                  </h4>
-                </div>
-
-                <div>
-                  <Link to={`/user/edit/${userId}`}>
-                    <button className="btn btn-primary">Edit Profile</button>
-                  </Link>
-                </div>
-              </div>
-            </section>
+            <ProfileCard   {...userDetails.profile} userId={userDetails.userId}/>
           )}
         </>
       </div>
