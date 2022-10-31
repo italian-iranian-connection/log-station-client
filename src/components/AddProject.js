@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const API_URL = "http://localhost:5005";
 
-function AddProject() {
+function AddProject({getAllProjects}) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [technology, setTechnology] = useState("")
@@ -20,6 +20,7 @@ function AddProject() {
       axios.post(`${API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
       console.log("finally......", response.data);
+      getAllProjects()
     })
     }
 

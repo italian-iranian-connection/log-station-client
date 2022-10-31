@@ -25,7 +25,6 @@ function App() {
         <Route path="/signup" element={ <IsAnon> <SignupPage /> </IsAnon> } />
         <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />  */}
 
-        <Route path="/projects" element={ <ProjectListPage /> } />
         <Route path="/user/:userId" element={ <UserPage /> } />
         <Route path="/user/edit/:userId" element={<EditProfilePage />} />
         {/* <Route path="/user/profile/:userId" element={<AddProfile />} /> */}
