@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context";
@@ -5,6 +6,10 @@ import { AuthContext } from "../context/auth.context";
 function Navbar(){
 
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const storedToken = localStorage.getItem("authToken");
+
+
+console.log(user)
 
     return (
         <nav>
@@ -20,7 +25,7 @@ function Navbar(){
 
           <button onClick={logOutUser}>Logout</button>
           <span>{user && `Welcome ${user.name}`}</span>
-          <button>Profile</button>
+          <span>{user && <Link to={`/user/${user._id}`}><button>Profile</button></Link>}</span>
 
         </>
       )}

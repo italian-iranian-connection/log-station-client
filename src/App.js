@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage";
 import UserPage from './pages/UserPage';
 import AddProfile from './components/user/AddProfile';
 import ProfileCard from './components/user/ProfileCard';
+import EditProfilePage from './pages/EditProfilePage';
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
         <Route path="/login" element={ <IsAnon> <LoginPage /> </IsAnon> } />  */}
 
         <Route path="/projects" element={ <ProjectListPage /> } />
-        <Route path="/user/:userId/" element={ <UserPage /> } />
+        <Route path="/user/:userId" element={ <UserPage /> } />
+        <Route path="/user/edit/:userId" element={<EditProfilePage />} />
+        {/* <Route path="/user/profile/:userId" element={<AddProfile />} /> */}
 
         <Route path="/signup" element={ <SignupPage /> }  />
         <Route path="/login" element={ <LoginPage /> } />
