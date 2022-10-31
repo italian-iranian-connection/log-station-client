@@ -41,7 +41,7 @@ function UserPage() {
 
 
   return (
-    
+    <>
       <div className="container">
 
         <div className="container card m-5 p-5" style={{ maxWwidth: "50vw" }}>
@@ -65,7 +65,7 @@ function UserPage() {
                   You have no profile at the moment. You can always add it here.
                 </h6>
                 <div className="col col-lg-6" style={{ marginLeft: "50%" }}>
-                  <button className="btn btn-dark" onClick={shiftForm}>
+                  <button className="btn btn-warning" onClick={shiftForm}>
                     {displayForm ? "Hide the Form" : "Add Profile"}
                   </button>
                   {displayForm && <AddProfile refreshPage={getUser} />}
@@ -74,12 +74,49 @@ function UserPage() {
             )}
             </div>
 
-          {userDetails?.profile?.headline && (
-            <ProfileCard   {...userDetails.profile} userId={userDetails.userId}/>
-          )}
-        
-      </div>
-    
+            {userDetails?.profile?.headline && (
+              <section>
+                <div
+                  className=""
+                  style={{
+                    width: "30rem",
+                    margin: "20px 50px",
+                    padding: "10px",
+                    textAlign: "left",
+                  }}
+                >
+                  <div className="card-body">
+                    <img src={userDetails.profile.screenshoot} alt="Profile" style={{width: "250px", borderRadius: "10px", marginBottom: "20px"}}/>
+                    <h4 className="card-title">
+                      Headline: {userDetails.profile.headline}
+                    </h4>
+                    <h4 className="card-subtitle mb-2 text-muted">
+                      Based in: {userDetails.profile.basedIn}
+                    </h4>
+                    <h4 className="card-subtitle mb-2 text-muted">
+                      Tech Skills: {userDetails.profile.technologies}
+                    </h4>
+                    <h4 className="card-subtitle mb-2 text-muted">
+                      GitHub URL: {userDetails.profile.githubUrl}
+                    </h4>
+                  </div>
+
+                  <div>
+                    <Link to={`/user/edit/${userId}`}>
+                      <button className="btn btn-warning" style={{marginLeft:"15px"}}>Edit Profile</button>
+                    </Link>
+                  </div>
+                </div>
+              </section>
+            )}
+          </div>
+                <div>
+                {userDetails?.profile?.headline && (
+                  <ProfileCard   {...userDetails.profile} userId={userDetails.userId}/>
+                )}
+              
+        </div>
+    </>
   );
 }
 

@@ -1,44 +1,69 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useContext } from "react";                     
+import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import "./Navbar.css";
 
-function Navbar(){
-
+function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
 
+  console.log(user);
 
-console.log(user)
-
-    return (
-        <nav>
-          <Link to="/">
-            <button>Home</button>
-          </Link>
-
-          {isLoggedIn && (
+  return (
+    <nav className="nav">
+      <div>
+        <Link to="/">
+          <button className="navButton">Home</button>
+        </Link>
+      </div>
+      {isLoggedIn && (
         <>
-          <Link to="/projects">
-            <button>Projects</button>
-          </Link>        
-
-          <Link to="/"><button onClick={logOutUser}>Logout</button></Link> 
-          <span>{user && `Welcome ${user.name}`}</span>
-          <span>{user && <Link to={`/user/${user._id}`}><button>Profile</button></Link>}</span>
-
+          <div>
+            <Link to="/projects">
+              <button className="navButton">Projects</button>
+            </Link>
+          </div>
+          <div>
+            <Link to="/">
+              <button className="navButton" onClick={logOutUser}>
+                Logout
+              </button>
+            </Link>{" "}
+          </div>
+          {/* <div>
+            <span>{user && `Welcome ${user.name}`}</span>{" "}
+          </div> */}
+          <div>
+            <span>
+              {user && (
+                <Link to={`/user/${user._id}`}>
+                  <button className="navButton endBtn">Profile</button>
+                </Link>
+              )}
+            </span>
+          </div>
         </>
       )}
- 
+
       {!isLoggedIn && (
         <>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
+          <div>
+            <Link to="/signup">
+              {" "}
+              <button className="navButton">Sign Up</button>{" "}
+            </Link>
+          </div>
+          <div>
+            <Link to="/login">
+              {" "}
+              <button className="navButton endBtn">Login</button>{" "}
+            </Link>
+          </div>
         </>
       )}
-
-        </nav>
-      );
+    </nav>
+  );
 }
 
 export default Navbar;

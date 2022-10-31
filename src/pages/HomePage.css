@@ -1,3 +1,14 @@
-/* body{
-    background-image: url("../../public/Yellow-background.png");
-} */
+ .homePage{
+    background-image: url("../../public/yeloow-heaer.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%; 
+    min-height: 95vh;
+
+} 
+
+.homeTitle {
+    font-size: 100px;
+    padding-top: 30vh;
+}
