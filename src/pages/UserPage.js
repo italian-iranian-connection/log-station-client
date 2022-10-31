@@ -41,8 +41,9 @@ function UserPage() {
 
 
   return (
-    <>
+    
       <div className="container">
+
         <div className="container card m-5 p-5" style={{ maxWwidth: "50vw" }}>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
             <div className="col">
@@ -56,7 +57,7 @@ function UserPage() {
           </div>
         </div>
 
-        <>
+        
           <div className="container card m-5 p-5" >
             {!userDetails?.profile?.headline && (
               <>
@@ -71,13 +72,14 @@ function UserPage() {
                 </div>
               </>
             )}
+            </div>
 
           {userDetails?.profile?.headline && (
             <ProfileCard   {...userDetails.profile} userId={userDetails.userId}/>
           )}
-        </>
+        
       </div>
-    </>
+    
   );
 }
 

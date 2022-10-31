@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function ProfileCard({
-  profileImg,
+  screenshoot,
   headline,
   basedIn,
   technologies,
@@ -22,7 +22,7 @@ function ProfileCard({
       >
         <div className="card-body">
         <h4>{name}</h4>
-          <img src={profileImg} alt="Profile" />
+          <img src={screenshoot} alt="Profile" />
 
           <h4 className="card-title">Headline: {headline}</h4>
           <h4 className="card-subtitle mb-2 text-muted">Based in: {basedIn}</h4>
