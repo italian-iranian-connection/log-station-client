@@ -7,7 +7,7 @@ function ProfileCard({
   githubUrl,
 }) {
   return (
-    <section className="ProfileCard">
+    <section className="ProfileCard mt-2">
       <div className="card p-2">
           <img src={screenshoot} alt="Profile" className="card-img-top p-2 mb-4"/>
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import RiseLoader from "react-spinners/RiseLoader";
 
 const API_URL = "http://localhost:5005";
 
@@ -14,7 +14,8 @@ function AddProject() {
     const [gitRepoUrl, setGitRepoUrl] = useState("")
     const [status, setStatus] = useState("planned")
     const [screenshoot, setScreenshoot] = useState("https://res.cloudinary.com/daualsgyz/image/upload/v1667058915/log-station/m36rz07pitw0tjmprqpp.jpg")
-    const navigate = useNavigate('/projects');
+    const [imgLoading, setImgLoading] = useState(false)
+    const navigate = useNavigate();
 
     const handleProjectForm = (e) => {
       e.preventDefault()
@@ -39,6 +40,7 @@ function AddProject() {
 
     const handleFileUpload = (e) => {
         e.preventDefault()
+        setImgLoading(true)
         console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
         uploadData.append("screenshoot", e.target.files[0])
@@ -46,6 +48,7 @@ function AddProject() {
         .then((response)=>{
           console.log(response.data.screenshoot)
         setScreenshoot(response.data.screenshoot)
+        setImgLoading(false)
         
       })
     }  
@@ -92,12 +95,22 @@ function AddProject() {
       </label>
       </div> 
 
-      <label className="form-label">Add a screenshoot of your Project:
+      <label className="form-label">Add a screenshoot of your Project (png, jpg):
         <input className="form-control m-2" type="file" name="screenshoot" onChange={(e)=>{handleFileUpload(e)}} />
       </label>
 
+      <div className="text-center">
+    <RiseLoader
+        color="yellow"
+        loading={imgLoading}
+        size={10}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> 
+</div>
+
       <p className="form-label m-2"> Please, check if you filled in all the * fields</p>
-      <button className="btn btn-dark" type="submit">Submit</button> 
+      <button className="btn btn-warning" type="submit">Submit</button> 
       
       </form>
     </div>

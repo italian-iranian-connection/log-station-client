@@ -30,7 +30,7 @@ function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
             </p>
             <h6 className="card-text">Techologies: </h6>
             {technologies.map((tech, index) => {
-              return <span key={index}>✩{tech} </span>;
+              return <span key={index}>✩{tech} </span>
             })}
           </div>
           {user?._id && user._id === userId && (

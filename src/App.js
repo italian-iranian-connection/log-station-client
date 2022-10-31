@@ -8,11 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import IsPrivate from './components/IsPrivate';
 // import IsAnon from "./components/IsAnon";
 import UserPage from './pages/UserPage';
-import AddProfile from './components/user/AddProfile';
-import ProfileCard from './components/user/ProfileCard';
 import EditProfilePage from './pages/EditProfilePage';
 import ProjectPage from './pages/ProjectPage';
-import EditProject from './components/EditProject';
+import EditProjectPage from './pages/EditProjectPage';
 
 function App() {
   return (
@@ -32,7 +30,7 @@ function App() {
         
         <Route path="/projects" element={ <ProjectsListPage /> } />
         <Route path='/projects/:projectId' element={ <IsPrivate> <ProjectPage /> </IsPrivate> } />
-        <Route path='/project/edit/:projectId' element={ <IsPrivate> <EditProject /> </IsPrivate> } />
+        <Route path='/projects/edit/:projectId' element={ <IsPrivate> <EditProjectPage /> </IsPrivate> } />
 
         <Route path="/signup" element={ <SignupPage /> }  />
         <Route path="/login" element={ <LoginPage /> } />

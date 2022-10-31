@@ -52,11 +52,11 @@ function ProjectsListPage(){
                     {
                     isLoggedIn
                     ? 
-                    <div className="col">
-                    <AddProject />   {/*   if no profile yet return AddProfile component */}
+                    <div className="col-12 col-lg-6">
+                    <AddProject />  
                     </div>
                     : 
-                    <div className="col mt-2">
+                    <div className="col-12 col-lg-6 mt-2">
                       <div className="card p-5">
                       <Link to="/signup" style={style}>
                       <h1 className="danger">Sign Up and start collaborating with other developers like you!</h1>

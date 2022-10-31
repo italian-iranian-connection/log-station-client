@@ -10,6 +10,7 @@ function ProjectDetails({
   gitRepoUrl,
   status,
   screenshoot,
+  _id,
   userId
 }) {
 
@@ -67,7 +68,7 @@ function ProjectDetails({
       </h3>
       {user?._id && user._id === userId && (
             <div className="m-1">
-            <Link to="/project/edit/:projectId" style={style} >
+            <Link to={`/projects/edit/${_id}`} style={style} >
               <button className="btn btn-dark">Update Your Project</button>
               </Link>
             </div>
