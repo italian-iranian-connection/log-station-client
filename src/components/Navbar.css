@@ -1,0 +1,19 @@
+.nav {
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(37, 37, 37);
+}
+
+.navButton{
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0.5em;
+    background-color: Transparent;
+    padding: 10px 20px;
+}
+
+.endBtn {
+    padding-right: 10em;
+}

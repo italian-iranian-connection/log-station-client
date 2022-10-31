@@ -26,10 +26,12 @@ function AddProfile({ refreshPage }) {
     const profile = { headline, basedIn, technologies, githubUrl, screenshoot };
     console.log(screenshoot);
     console.log("profile: ", profile);
-    const storedToken = localStorage.getItem("authToken")   
+    const storedToken = localStorage.getItem("authToken");
 
     axios
-      .put(`${API_URL}/api/user/${user._id}/`, profile, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .put(`${API_URL}/api/user/${user._id}/`, profile, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         console.log(response);
         refreshPage();
@@ -43,9 +45,8 @@ function AddProfile({ refreshPage }) {
     console.log("The file to be uploaded is: ", e.target.files[0]);
     const uploadData = new FormData();
     uploadData.append("screenshoot", e.target.files[0]);
-    axios.post(`${API_URL}/api/upload`, uploadData)
-    .then((response) => {
-      console.log(response)
+    axios.post(`${API_URL}/api/upload`, uploadData).then((response) => {
+      console.log(response);
       console.log(response.data.screenshoot);
       setScreenshoot(response.data.screenshoot);
     });
@@ -123,7 +124,7 @@ function AddProfile({ refreshPage }) {
             </label>
           </div>
 
-          <button type="submit" className="btn btn-dark">
+          <button type="submit" className="btn btn-warning">
             Submit
           </button>
         </form>

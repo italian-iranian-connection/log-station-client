@@ -63,7 +63,7 @@ function UserPage() {
                   You have no profile at the moment. You can always add it here.
                 </h6>
                 <div className="col col-lg-6" style={{ marginLeft: "50%" }}>
-                  <button className="btn btn-dark" onClick={shiftForm}>
+                  <button className="btn btn-warning" onClick={shiftForm}>
                     {displayForm ? "Hide the Form" : "Add Profile"}
                   </button>
                   {displayForm && <AddProfile refreshPage={getUser} />}
@@ -83,7 +83,7 @@ function UserPage() {
                   }}
                 >
                   <div className="card-body">
-                    <img src={userDetails.profile.screenshoot} alt="Profile" />
+                    <img src={userDetails.profile.screenshoot} alt="Profile" style={{width: "250px", borderRadius: "10px", marginBottom: "20px"}}/>
                     <h4 className="card-title">
                       Headline: {userDetails.profile.headline}
                     </h4>
@@ -100,7 +100,7 @@ function UserPage() {
 
                   <div>
                     <Link to={`/user/edit/${userId}`}>
-                      <button className="btn btn-primary">Edit Profile</button>
+                      <button className="btn btn-warning" style={{marginLeft:"15px"}}>Edit Profile</button>
                     </Link>
                   </div>
                 </div>

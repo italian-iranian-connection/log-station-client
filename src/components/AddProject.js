@@ -15,6 +15,7 @@ function AddProject({getAllProjects}) {
     const [screenshoot, setScreenshoot] = useState("https://res.cloudinary.com/daualsgyz/image/upload/v1667058915/log-station/m36rz07pitw0tjmprqpp.jpg")
 
     const handleProjectForm = (e) => {
+      e.preventDefault()
       const newProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
       const storedToken = localStorage.getItem("authToken")   
       axios.post(`${API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -100,4 +101,4 @@ function AddProject({getAllProjects}) {
   );
 }
 
-export default AddProject
+export default AddProject;
