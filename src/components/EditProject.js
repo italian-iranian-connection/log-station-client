@@ -2,27 +2,26 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { AuthContext } from '../context/auth.context';
 
-
 const API_URL = "http://localhost:5005";
 
-function EditProject({projectId}) {
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
+function EditProject( {project} ) {
+    const [name, setName] = useState(project.name)
+    const [description, setDescription] = useState(project.description)
     const [technology, setTechnology] = useState("")
-    const [technologies, setTechnologies] = useState([])
-    const [deploymentUrl, setDeploymentUrl] = useState("")
-    const [gitRepoUrl, setGitRepoUrl] = useState("")
-    const [status, setStatus] = useState("planned")
-    const [screenshoot, setScreenshoot] = useState()
+    const [technologies, setTechnologies] = useState(project.technologies)
+    const [deploymentUrl, setDeploymentUrl] = useState(project.deploymentUrl)
+    const [gitRepoUrl, setGitRepoUrl] = useState(project.gitRepoUrl)
+    const [status, setStatus] = useState(project.status)
+    const [screenshoot, setScreenshoot] = useState(project.screenshoot)
 
     const { user } = useContext(AuthContext);
 
     const handleProjectForm = (e) => {
+      e.preventDefault()
         const updateProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
         const storedToken = localStorage.getItem("authToken")   
-        axios.put(`${API_URL}/api/projects/${projectId}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
+        axios.put(`${API_URL}/api/projects/${project._id}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then((response) => {
-        console.log("finally......", response.data);
       })
       }
 

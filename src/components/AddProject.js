@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const API_URL = "http://localhost:5005";
@@ -13,6 +14,7 @@ function AddProject({getAllProjects}) {
     const [gitRepoUrl, setGitRepoUrl] = useState("")
     const [status, setStatus] = useState("planned")
     const [screenshoot, setScreenshoot] = useState("https://res.cloudinary.com/daualsgyz/image/upload/v1667058915/log-station/m36rz07pitw0tjmprqpp.jpg")
+    const navigate = useNavigate('/projects');
 
     const handleProjectForm = (e) => {
       e.preventDefault()
@@ -21,7 +23,7 @@ function AddProject({getAllProjects}) {
       axios.post(`${API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
       console.log("finally......", response.data);
-      getAllProjects()
+      navigate('/projects');
     })
     }
 
@@ -43,6 +45,7 @@ function AddProject({getAllProjects}) {
         .then((response)=>{
           console.log(response.data.screenshoot)
         setScreenshoot(response.data.screenshoot)
+        
       })
     }  
 
