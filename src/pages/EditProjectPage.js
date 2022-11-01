@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import RiseLoader from "react-spinners/RiseLoader";
 
-// const API_URL = "http://localhost:5005";
-
 function EditProjectPage( ) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -43,9 +41,22 @@ function EditProjectPage( ) {
         const updateProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
         const storedToken = localStorage.getItem("authToken")   
         axios.put(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(() => {
+        .then((response) => {
+          alert(response.message)
           navigate(`/projects/${projectId}`)
       })
+      .catch((err) => console.log(err))
+      }
+
+      const deleteProject = (e) => {
+        e.preventDefault()
+        console.log('delete click')
+        const storedToken = localStorage.getItem("authToken")
+        axios.delete(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(() => {
+          navigate(`/projects`)
+        })
+        .catch((err) => console.log(err))
       }
 
     const addTecnology = (technology, e) => {
@@ -81,7 +92,7 @@ function EditProjectPage( ) {
         <RiseLoader
         color="yellow"
         loading={loading}
-        size={200}
+        size={50}
         aria-label="Loading Spinner"
         data-testid="loader"
       /> 
@@ -140,6 +151,9 @@ function EditProjectPage( ) {
 </div>
     <p className="form-label m-2"> Please, check if you filled in all the * fields</p>
     <button className="btn btn-warning" type="submit">Submit</button> 
+    <div className="m-2">
+      <button className="btn btn-danger" onClick={(e)=>{deleteProject(e)}}>Delete</button>
+    </div>
     
     </form>
   </div>
