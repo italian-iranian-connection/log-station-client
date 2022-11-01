@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { useNavigate, useParams } from "react-router-dom";
 import image from "./def-profile.png"
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function AddProfile({ refreshPage }) {
   const [headline, setHeadline] = useState("");
@@ -28,7 +28,7 @@ function AddProfile({ refreshPage }) {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .put(`${API_URL}/api/user/${user._id}/`, profile, {
+      .put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}/`, profile, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -54,7 +54,7 @@ function AddProfile({ refreshPage }) {
     console.log("The file to be uploaded is: ", e.target.files[0]);
     const uploadData = new FormData();
     uploadData.append("screenshoot", e.target.files[0]);
-    axios.post(`${API_URL}/api/upload`, uploadData).then((response) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData).then((response) => {
       setScreenshoot(response.data.screenshoot);
     });
   };

@@ -6,7 +6,7 @@ import AddProfile from "../components/user/AddProfile";
 import ProfileCard from "../components/user/ProfileCard";
 import "./UserPage.css";
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function UserPage() {
   const { user } = useContext(AuthContext);
@@ -21,7 +21,7 @@ function UserPage() {
   const storedToken = localStorage.getItem("authToken");
   const getUser = () => {
     axios
-      .get(`${API_URL}/api/user/${userId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

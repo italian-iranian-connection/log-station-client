@@ -12,7 +12,7 @@ import image from "./def-profile.png"
 //   : renderAddProfileButton()
 // }
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function EditProfilePage() {
   const [headline, setHeadline] = useState("");
@@ -31,7 +31,7 @@ function EditProfilePage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/user/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`)
       .then((response) => {
         const oneUser = response.data.profile;
         setHeadline(oneUser.headline);
@@ -50,7 +50,7 @@ function EditProfilePage() {
 
     const profile = { headline, basedIn, technologies, githubUrl, screenshoot };
 
-    axios.put(`${API_URL}/api/user/${user._id}/`, profile).then((response) => {
+    axios.put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}/`, profile).then((response) => {
       navigate(`/user/${userId}`);
     });
   };
@@ -69,7 +69,7 @@ function EditProfilePage() {
   const deleteProfile = () => {
     const profile = {screenshoot: image};
     axios
-      .put(`${API_URL}/api/user/${userId}`, profile)
+      .put(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, profile)
       .then((res) => {
         console.log("res: ", res);
         navigate(`/user/${userId}`);
@@ -81,7 +81,7 @@ function EditProfilePage() {
     console.log("The file to be uploaded is: ", e.target.files[0]);
     const uploadData = new FormData();
     uploadData.append("screenshoot", e.target.files[0]);
-    axios.post(`${API_URL}/api/upload`, uploadData).then((response) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData).then((response) => {
       console.log(response.data.screenshoot);
       setScreenshoot(response.data.screenshoot);
     });

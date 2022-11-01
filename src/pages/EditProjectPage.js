@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import RiseLoader from "react-spinners/RiseLoader";
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function EditProjectPage( ) {
     const [name, setName] = useState("")
@@ -24,7 +24,7 @@ function EditProjectPage( ) {
     const getProject = () => {
       const storedToken = localStorage.getItem("authToken") 
 
-      axios.get(`${API_URL}/api/projects/${projectId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+      axios.get(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         console.log(response.data)
         setName(response.data.name)
@@ -42,7 +42,7 @@ function EditProjectPage( ) {
       e.preventDefault()
         const updateProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
         const storedToken = localStorage.getItem("authToken")   
-        axios.put(`${API_URL}/api/projects/${projectId}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
+        axios.put(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(() => {
           navigate(`/projects/${projectId}`)
       })
@@ -63,7 +63,7 @@ function EditProjectPage( ) {
           console.log("The file to be uploaded is: ", e.target.files[0]);
           const uploadData = new FormData();
           uploadData.append("screenshoot", e.target.files[0])
-          axios.post(`${API_URL}/api/upload`, uploadData)
+          axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
           .then((response)=>{
             console.log(response.data.screenshoot)
           setScreenshoot(response.data.screenshoot)

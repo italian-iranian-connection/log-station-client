@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth.context";
 import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function ProjectsListPage() {
   const [projects, setProjects] = useState([]);
@@ -19,7 +19,7 @@ function ProjectsListPage() {
   const getAllProjects = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/api/projects`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/projects`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

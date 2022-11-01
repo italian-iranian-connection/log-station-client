@@ -5,7 +5,7 @@ import RiseLoader from "react-spinners/RiseLoader";
 import ProjectDetails from "../components/ProjectDetails";
 import ProfileCard from "../components/user/ProfileCard";
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function ProjectPage() {
   const [projectDetails, setProjectDetails] = useState({});
@@ -16,7 +16,7 @@ function ProjectPage() {
 
   const getProjectDetails = () => {
     axios
-      .get(`${API_URL}/api/projects/${projectId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((projectDetails) => {
@@ -28,7 +28,7 @@ function ProjectPage() {
 
   const getUser = (ownerId) => {
     axios
-      .get(`${API_URL}/api/user/${ownerId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/user/${ownerId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

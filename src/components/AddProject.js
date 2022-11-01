@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RiseLoader from "react-spinners/RiseLoader";
 
-const API_URL = "http://localhost:5005";
+// const API_URL = "http://localhost:5005";
 
 function AddProject() {
     const [name, setName] = useState("")
@@ -21,7 +21,7 @@ function AddProject() {
       e.preventDefault()
       const newProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
       const storedToken = localStorage.getItem("authToken")   
-      axios.post(`${API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
+      axios.post(`${process.env.REACT_APP_API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
       console.log("finally......", response.data);
       //navigate('/projects');
@@ -44,7 +44,7 @@ function AddProject() {
         console.log("The file to be uploaded is: ", e.target.files[0]);
         const uploadData = new FormData();
         uploadData.append("screenshoot", e.target.files[0])
-        axios.post(`${API_URL}/api/upload`, uploadData)
+        axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
         .then((response)=>{
           console.log(response.data.screenshoot)
         setScreenshoot(response.data.screenshoot)
