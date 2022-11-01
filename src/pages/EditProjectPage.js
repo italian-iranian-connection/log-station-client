@@ -1,27 +1,50 @@
 import axios from "axios";
-import { useState, useContext } from "react";
-import { AuthContext } from '../context/auth.context';
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import RiseLoader from "react-spinners/RiseLoader";
 
 const API_URL = "http://localhost:5005";
 
-function EditProject( {project} ) {
-    const [name, setName] = useState(project.name)
-    const [description, setDescription] = useState(project.description)
+function EditProjectPage( ) {
+    const [name, setName] = useState("")
+    const [description, setDescription] = useState("")
     const [technology, setTechnology] = useState("")
-    const [technologies, setTechnologies] = useState(project.technologies)
-    const [deploymentUrl, setDeploymentUrl] = useState(project.deploymentUrl)
-    const [gitRepoUrl, setGitRepoUrl] = useState(project.gitRepoUrl)
-    const [status, setStatus] = useState(project.status)
-    const [screenshoot, setScreenshoot] = useState(project.screenshoot)
+    const [technologies, setTechnologies] = useState([])
+    const [deploymentUrl, setDeploymentUrl] = useState("")
+    const [gitRepoUrl, setGitRepoUrl] = useState("")
+    const [status, setStatus] = useState("")
+    const [screenshoot, setScreenshoot] = useState("")
+    const [loading, setLoading] = useState(true);
+    const [imgLoading, setImgLoading] = useState(false)
 
-    const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
+
+    const {projectId} = useParams()
+
+    const getProject = () => {
+      const storedToken = localStorage.getItem("authToken") 
+
+      axios.get(`${API_URL}/api/projects/${projectId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then((response) => {
+        console.log(response.data)
+        setName(response.data.name)
+        setDescription(response.data.description)
+        setTechnologies(response.data.technologies)
+        setDeploymentUrl(response.data.deploymentUrl)
+        setGitRepoUrl(response.data.gitRepoUrl)
+        setStatus(response.data.status)
+        setScreenshoot(response.data.screenshoot)
+        setLoading(false)
+      })
+    }
 
     const handleProjectForm = (e) => {
       e.preventDefault()
         const updateProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
         const storedToken = localStorage.getItem("authToken")   
-        axios.put(`${API_URL}/api/projects/${project._id}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then((response) => {
+        axios.put(`${API_URL}/api/projects/${projectId}`, updateProject, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(() => {
+          navigate(`/projects/${projectId}`)
       })
       }
 
@@ -36,6 +59,7 @@ function EditProject( {project} ) {
       } 
   
       const handleFileUpload = (e) => {
+        setImgLoading(true)
           console.log("The file to be uploaded is: ", e.target.files[0]);
           const uploadData = new FormData();
           uploadData.append("screenshoot", e.target.files[0])
@@ -43,12 +67,27 @@ function EditProject( {project} ) {
           .then((response)=>{
             console.log(response.data.screenshoot)
           setScreenshoot(response.data.screenshoot)
+          setImgLoading(false)
         })
       } 
 
+      useEffect(() => {
+        getProject()
+      }, [])
+
     return(
+
         <div className="EditProject">
+        <RiseLoader
+        color="yellow"
+        loading={loading}
+        size={200}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> 
+      {name &&
             <div className='container'>
+            
     
     <form onSubmit={(e)=> {handleProjectForm(e)}} className="form card mt-2 p-3">
 
@@ -87,17 +126,26 @@ function EditProject( {project} ) {
     </label>
     </div> 
 
-    <label className="form-label">Add a screenshoot of your Project:
+    <label className="form-label">Add a screenshoot of your Project (png, jpg):
       <input className="form-control m-2" type="file" name="screenshoot" onChange={(e)=>{handleFileUpload(e)}} />
     </label>
-
+    <div className="text-center">
+    <RiseLoader
+        color="yellow"
+        loading={imgLoading}
+        size={10}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> 
+</div>
     <p className="form-label m-2"> Please, check if you filled in all the * fields</p>
-    <button className="btn btn-dark" type="submit">Submit</button> 
+    <button className="btn btn-warning" type="submit">Submit</button> 
     
     </form>
   </div>
+      }
         </div>
     )
 }
 
-export default EditProject
+export default EditProjectPage

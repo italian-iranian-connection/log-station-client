@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
 function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
   const style = { textDecoration: "none", color: "black" };
 
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="ProjectCard card m-2 p-2">
@@ -30,18 +30,16 @@ function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
             </p>
             <h6 className="card-text">Techologies: </h6>
             {technologies.map((tech, index) => {
-              return <span key={index}>✩{tech} </span>;
+              return <span key={index}>✩{tech} </span>
             })}
           </div>
+          {user?._id && user._id === userId && (
+            <div className="m-1">
+              <button className="btn btn-dark">Update Your Project</button>
+            </div>
+          )}
         </div>
       </Link>
-        {/* {(isLoggedIn && user._id === userId) && 
-        <div className="m-1">
-         <Link to={`/projects/${_id}`} style={style}>
-          <button className="btn btn-dark">Update Your Project</button>
-          </Link> 
-        </div>
-        } */}
     </div>
   );
 }

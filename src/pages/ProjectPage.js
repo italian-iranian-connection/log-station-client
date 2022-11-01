@@ -1,10 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import RiseLoader from "react-spinners/RiseLoader";
 import ProjectDetails from "../components/ProjectDetails";
-import { AuthContext } from "../context/auth.context";
-import EditProject from "../components/EditProject";
 import ProfileCard from "../components/user/ProfileCard";
 
 const API_URL = "http://localhost:5005";
@@ -12,16 +10,11 @@ const API_URL = "http://localhost:5005";
 function ProjectPage() {
   const [projectDetails, setProjectDetails] = useState({});
   const [loading, setLoading] = useState(true);
-  const [userDetails, setUserDetails] = useState(null)
+  const [userDetails, setUserDetails] = useState(null);
   const { projectId } = useParams();
   const storedToken = localStorage.getItem("authToken");
 
-    
-  
-  const { user } = useContext(AuthContext);
-
   const getProjectDetails = () => {
-    
     axios
       .get(`${API_URL}/api/projects/${projectId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -29,23 +22,27 @@ function ProjectPage() {
       .then((projectDetails) => {
         setProjectDetails(projectDetails.data);
         setLoading(false);
+        getUser(projectDetails.data.userId)
       });
   };
 
-  const getUser = () => {
-
-    axios.get(`${API_URL}/api/user/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-      .then(response => {
-         setUserDetails(response.data)
+  const getUser = (ownerId) => {
+    axios
+      .get(`${API_URL}/api/user/${ownerId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .catch((error) => console.log(error));
- }
+      .then((response) => {
+        setUserDetails(response.data)
+        setLoading(false);
+      })
+      .catch((error) => console.log(error))
+  };
 
   useEffect(() => {
     getProjectDetails();
-    getUser()
-    console.log(user);
   }, []);
+
+  
 
   return (
     <div className="ProjectPage">
@@ -56,21 +53,16 @@ function ProjectPage() {
         aria-label="Loading Spinner"
         data-testid="loader"
       />
-
-      {projectDetails?._id && (
-        <div className="row">
-          <div className="col">
-            <ProjectDetails {...projectDetails} />
+           {userDetails?.profile &&
+           <div className="row mt-2">
+           <div className="col-12 col-lg-6">
+           <ProjectDetails {...projectDetails} /> 
           </div>
-          <div className="col">
-            {(user._id === projectDetails.userId && userDetails.profile) ? (
-              <EditProject project={projectDetails} />
-            ) : (
-              <ProfileCard {...userDetails.profile} profileData={userDetails} />
-            )}
+          <div className="col-12 col-lg-6">
+            <ProfileCard {...userDetails.profile} profileData={userDetails} /> 
           </div>
-        </div>
-      )}
+          </div>
+          }
     </div>
   );
 }
