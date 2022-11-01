@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import "./ProfileCard.css";
-=======
->>>>>>> origin/main
 
 function ProfileCard({
   screenshoot,
