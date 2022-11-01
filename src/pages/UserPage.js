@@ -48,7 +48,7 @@ function UserPage() {
                     {userDetails && (
                       <div className="headProfile">
                         <div>
-                          {userDetails && (<img
+                          {userDetails.profile.screenshoot && (<img
                             src={userDetails.profile.screenshoot}
                             alt="Profile"
                             style={{
