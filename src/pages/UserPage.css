@@ -1,0 +1,30 @@
+.headProfile {
+ display: flex;
+ flex-wrap: wrap;
+}
+
+
+.prof-title {
+    margin: 10px;
+}
+
+.collab {
+    width: 70px;
+    height: 70px;
+    background-image: linear-gradient(rgba(141, 100, 163, 0.626), rgba(210, 96, 166, 0.404));;
+    border-radius: 50%;
+    margin: 15px;
+}
+
+.collab-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coll {
+    margin: 20px;
+}
+
+.collab-title{
+    padding: 20px;
+}

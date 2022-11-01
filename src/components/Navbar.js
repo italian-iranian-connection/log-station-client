@@ -24,25 +24,31 @@ function Navbar() {
               <button className="navButton">Projects</button>
             </Link>
           </div>
-          <div>
-            <Link to="/">
-              <button className="navButton" onClick={logOutUser}>
-                Logout
-              </button>
-            </Link>{" "}
-          </div>
+
+
+
           {/* <div>
             <span>{user && `Welcome ${user.name}`}</span>{" "}
           </div> */}
+
           <div>
             <span>
               {user && (
                 <Link to={`/user/${user._id}`}>
-                  <button className="navButton endBtn">Profile</button>
+                  <button className="navButton">Profile</button>
                 </Link>
               )}
             </span>
           </div>
+
+          <div>
+            <Link to="/">
+              <button className="navButton endBtn" onClick={logOutUser}>
+                Logout
+              </button>
+            </Link>{" "}
+          </div>
+
         </>
       )}
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { useNavigate, useParams } from "react-router-dom";
-
+import image from "./def-profile.png"
 const API_URL = "http://localhost:5005";
 
 function AddProfile({ refreshPage }) {
@@ -11,7 +11,7 @@ function AddProfile({ refreshPage }) {
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
 
-  const [screenshoot, setScreenshoot] = useState("");
+  const [screenshoot, setScreenshoot] = useState(image);
   // const [profileImg, setProfileImg] = useState("https://www.canva.com/templates/EAEeKH905XY-yellow-and-black-gamer-grunge-twitch-profile-picture/");
 
   const navigate = useNavigate();

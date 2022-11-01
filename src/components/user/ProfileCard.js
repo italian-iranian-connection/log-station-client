@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./ProfileCard.css";
 
 function ProfileCard({
   screenshoot,
@@ -10,7 +11,7 @@ function ProfileCard({
   name
 }) {
   return (
-    <section className="ProfileCard">
+    <section className="ProfileCard profile">
       <div
         className="card"
         style={{
@@ -22,7 +23,7 @@ function ProfileCard({
       >
         <div className="card-body">
         <h4>{name}</h4>
-          <img src={screenshoot} alt="Profile" />
+          <img className="profileImg" src={screenshoot} alt="Profile" />
 
           <h4 className="card-title">Headline: {headline}</h4>
           <h4 className="card-subtitle mb-2 text-muted">Based in: {basedIn}</h4>
@@ -34,12 +35,13 @@ function ProfileCard({
           </h4>
         </div>
 
-        <div>
+        
+      </div>
+      <div>
           <Link to={`/user/edit/${userId}`}>
-            <button className="btn btn-primary">Edit Profile</button>
+            <button className="btn btn-warning editBtn">Edit Profile</button>
           </Link>
         </div>
-      </div>
     </section>
   );
 }

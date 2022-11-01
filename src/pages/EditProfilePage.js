@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useParams, useNavigate } from "react-router-dom";
+import image from "./def-profile.png"
+
 
 //"https://www.canva.com/templates/EAEeKH905XY-yellow-and-black-gamer-grunge-twitch-profile-picture/",
 
@@ -17,7 +19,7 @@ function EditProfilePage() {
   const [basedIn, setBasedIn] = useState("");
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
-  const [screenshoot, setScreenshoot] = useState("");
+  const [screenshoot, setScreenshoot] = useState(image);
 
   const { user } = useContext(AuthContext);
 
@@ -53,7 +55,7 @@ function EditProfilePage() {
   };
 
   const deleteProfile = () => {
-    const profile = {};
+    const profile = {screenshoot: image};
     axios
       .put(`${API_URL}/api/user/${userId}`, profile)
       .then((res) => {
