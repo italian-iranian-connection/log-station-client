@@ -3,8 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RiseLoader from "react-spinners/RiseLoader";
 
-// const API_URL = "http://localhost:5005";
-
 function AddProject() {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -22,8 +20,7 @@ function AddProject() {
       const newProject = {name, description, technologies, deploymentUrl, gitRepoUrl, status, screenshoot}
       const storedToken = localStorage.getItem("authToken")   
       axios.post(`${process.env.REACT_APP_API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
-      .then((response) => {
-      console.log("finally......", response.data);
+      .then(() => {
       //navigate('/projects');
     })
     }

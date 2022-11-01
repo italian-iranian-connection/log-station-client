@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import "./ProfileCard.css";
 
 function ProfileCard({
@@ -8,6 +8,7 @@ function ProfileCard({
   technologies,
   githubUrl,
 }) {
+
   return (
     <section className="ProfileCard mt-2">
       <div className="card p-2">

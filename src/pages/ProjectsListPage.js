@@ -1,20 +1,15 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import RiseLoader from "react-spinners/RiseLoader";
 import AddProject from "../components/AddProject";
 import ProjectCard from "../components/ProjectCard";
-import { AuthContext } from "../context/auth.context";
-import { Link } from "react-router-dom";
-import LoginPage from "./LoginPage";
 
-// const API_URL = "http://localhost:5005";
+import { Link } from "react-router-dom";
 
 function ProjectsListPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const style = { textDecoration: "none", color: "fuchsia" };
-
-  const { isLoggedIn } = useContext(AuthContext);
 
   const getAllProjects = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -36,38 +31,31 @@ function ProjectsListPage() {
   return (
     <div className="ProjectsListPage">
       <RiseLoader
-        color="fuchsia"
+        color="yellow"
         loading={loading}
-        size={200}
+        size={50}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
       <div className="container">
         <div className="row mt-2">
-          <div className="col">
+          <div className="col-12 col-lg-6">
             {projects.map((project) => {
               return <ProjectCard {...project} key={project._id} />;
             })}
           </div>
-          {isLoggedIn ? (
-            <div className="col-12 col-lg-6">
-              <AddProject />
-            </div>
-          ) : (
-            <div className="col-12 col-lg-6 mt-2">
-              <div className="card p-5">
-                <Link to="/signup" style={style}>
-                  <h1 className="danger">
-                    Sign Up and start collaborating with other developers like
-                    you!
-                  </h1>
-                </Link>
-              </div>
-              <div className="card p-5 mt-2">
-                <LoginPage />
-              </div>
-            </div>
-          )}
+
+          <div className="col-12 col-lg-6">
+            <AddProject />
+          </div>
+
+          <div className="card p-5">
+            <Link to="/signup" style={style}>
+              <h1 className="danger">
+                Sign Up and start collaborating with other developers like you!
+              </h1>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

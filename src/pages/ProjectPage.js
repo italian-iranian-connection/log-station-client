@@ -5,8 +5,6 @@ import RiseLoader from "react-spinners/RiseLoader";
 import ProjectDetails from "../components/ProjectDetails";
 import ProfileCard from "../components/user/ProfileCard";
 
-// const API_URL = "http://localhost:5005";
-
 function ProjectPage() {
   const [projectDetails, setProjectDetails] = useState({});
   const [loading, setLoading] = useState(true);
@@ -47,9 +45,9 @@ function ProjectPage() {
   return (
     <div className="ProjectPage">
       <RiseLoader
-        color="fuchsia"
+        color="yellow"
         loading={loading}
-        size={200}
+        size={50}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
