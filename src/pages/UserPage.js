@@ -5,7 +5,7 @@ import { useParams, Link } from "react-router-dom";
 import AddProfile from "../components/user/AddProfile";
 import ProfileCard from "../components/user/ProfileCard";
 import "./UserPage.css";
-
+import image from "./def-profile.png"
 // const API_URL = "http://localhost:5005";
 
 function UserPage() {
@@ -48,7 +48,7 @@ function UserPage() {
                     {userDetails && (
                       <div className="headProfile">
                         <div>
-                          {/* {userDetails.profile.screenshoot && (<img
+                           {userDetails?.profile?.headline ? (<img
                             src={userDetails.profile.screenshoot}
                             alt="Profile"
                             style={{
@@ -57,7 +57,19 @@ function UserPage() {
                               borderRadius: "50%",
                               marginBottom: "20px",
                             }}
-                          />)} */}
+                          />)
+                        :
+                        (<img
+                          src={image}
+                          alt="Profile"
+                          style={{
+                            width: "200px",
+                            height: "200px",
+                            borderRadius: "50%",
+                            marginBottom: "20px",
+                          }}
+                        />)
+                        } 
                         </div>
 
                         <div className="prof-title">
