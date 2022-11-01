@@ -42,13 +42,13 @@ function UserPage() {
         <div className="container card m-5 p-5" style={{ maxWwidth: "50vw" }}>
           {/* <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4"> */}
             <div className="col">
-              <div class="container">
-                <div class="row">
-                  <div class="col">
+              <div className="container">
+                <div className="row">
+                  <div className="col">
                     {userDetails && (
                       <div className="headProfile">
                         <div>
-                          <img
+                          {userDetails && (<img
                             src={userDetails.profile.screenshoot}
                             alt="Profile"
                             style={{
@@ -57,7 +57,7 @@ function UserPage() {
                               borderRadius: "50%",
                               marginBottom: "20px",
                             }}
-                          />
+                          />)}
                         </div>
 
                         <div className="prof-title">
@@ -67,7 +67,7 @@ function UserPage() {
                       </div>
                     )}
                   </div>
-                  <div class="col">
+                  <div className="col">
                     <div className="card coll">
                       <h6 className="collab-title">Find collaborators for your projects</h6>
                       <div className="collab-box">
