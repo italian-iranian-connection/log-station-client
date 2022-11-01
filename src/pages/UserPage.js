@@ -72,22 +72,18 @@ function UserPage() {
                         } 
                         </div>
 
-                        <div className="prof-title">
-                          <h4 className="card-title">{userDetails.name}</h4>
-                          <h6 className="card-text">{userDetails.email}</h6>
-                        </div>
+                        
                       </div>
                     )}
                   </div>
                   <div className="col">
                     <div className="card coll">
-                      <h6 className="collab-title">Find collaborators for your projects</h6>
+                      <h6 className="collab-title"></h6>
                       <div className="collab-box">
-                      <div className="collab"></div>
-                      <div className="collab"></div>
-                      <div className="collab"></div>
-                      <div className="collab"></div>
-                      <div className="collab"></div>
+                      {userDetails && (<div className="prof-title">
+                          <h4 className="card-title">{userDetails.name}</h4>
+                          <h6 className="card-text">{userDetails.email}</h6>
+                        </div>)}
                       </div>
                       {/* <AllUsers /> */}
                     </div>
