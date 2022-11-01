@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./LoginPage.css";
+import image from "./door-logo.jpg"
+
+
+
  
 // const API_URL = "http://localhost:5005";
  
@@ -38,40 +43,61 @@ function SignupPage(props) {
   
   return (
     <div className="SignupPage">
+          <div className="container frame">
+          <div className="login-img"><img style={{height: "450px", maxWidth: "350px", borderRadius: "15%", filter: "invert(10%)"}} src={image} /></div>
+          <div className="login">
+
+
       <h1>Sign Up</h1>
  
       <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
+
+      <div className="form-outline mb-4">
+        <label className="form-label" htmlFor="form2Example1">Email</label>
         <input 
+        id="form2Example1"
+        className="form-control"
           type="email"
           name="email"
           value={email}
           onChange={handleEmail}
         />
+        </div>
  
-        <label>Password:</label>
+        <div className="form-outline mb-4">
+
+        <label className="form-label" htmlFor="form2Example1">Password</label>
         <input 
+        id="form2Example1"
+        className="form-control"
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
- 
-        <label>Name:</label>
+ </div>
+
+ <div className="form-outline mb-4">
+
+        <label className="form-label" htmlFor="form2Example1">Name</label>
         <input 
+        id="form2Example1"
+        className="form-control"
           type="text"
           name="name"
           value={name}
           onChange={handleName}
         />
- 
-        <button type="submit">Sign Up</button>
+   </div>
+        <button className="btn btn-outline-success" type="submit">Sign Up</button>
       </form>
  
       { errorMessage && <p className="error-message">{errorMessage}</p> }
  
       <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
+      <Link className="btn btn-outline-success" to={"/login"}> Login</Link>
+    </div>
+    </div>
     </div>
   )
 }

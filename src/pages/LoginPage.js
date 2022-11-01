@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/auth.context';
+import "./LoginPage.css";
+import image from "./door-logo.jpg"
  
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -45,32 +47,47 @@ function LoginPage(props) {
   
   return (
     <div className="LoginPage">
+
+    <div className="container frame">
+      <div className="login-img"><img style={{height: "450px", maxWidth: "350px", borderRadius: "15%", filter: "invert(90%)"}} src={image} /></div>
+      <div className="login">
       <h1>Login</h1>
  
       <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
+
+      <div className="form-outline mb-4">
+        <label className="form-label" htmlFor="form2Example1">Email</label>
         <input 
+        id="form2Example1"
+        className="form-control"
           type="email"
           name="email"
           value={email}
           onChange={handleEmail}
         />
+        </div>
  
-        <label>Password:</label>
+        <div className="form-outline mb-4">
+        <label className="form-label" htmlFor="form2Example1">Password</label>
         <input
+        id="form2Example1"
+        className="form-control"
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
- 
-        <button type="submit">Login</button>
+   </div>
+        <button type="submit" className="btn btn-outline-success">Login</button>
       </form>
       { errorMessage && <p className="error-message">{errorMessage}</p> }
  
       <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+      <Link className="btn btn-outline-success" to={"/signup"}> Sign Up</Link>
+      </div>
     </div>
+    </div>
+
   )
 }
  

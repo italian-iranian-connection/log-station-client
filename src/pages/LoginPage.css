@@ -1,0 +1,27 @@
+.LoginPage, .SignupPage{
+font-family: consolas;
+}
+
+.frame {
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    padding: 200px auto auto 50%;
+}
+
+
+.login{
+    min-width: 300px;
+    margin: 200px auto auto 10%;
+}
+
+.login-img{
+    margin: 200px 0 auto 15%;
+}
+login-img > img {
+    border-radius: 50%;
+}
+
+.btn{
+    margin-bottom: 15px;
+}
