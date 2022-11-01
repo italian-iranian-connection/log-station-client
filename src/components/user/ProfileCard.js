@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-import "./ProfileCard.css";
-=======
->>>>>>> 83df31a09f443ebaf38a72b091e3b7e94641f31d
 
 function ProfileCard({
   screenshoot,
@@ -37,17 +32,6 @@ function ProfileCard({
       </h3>
       <span className="text-center text-muted">{githubUrl}</span>
         </div>
-<<<<<<< HEAD
-
-        
-      </div>
-      <div>
-          <Link to={`/user/edit/${userId}`}>
-            <button className="btn btn-warning editBtn">Edit Profile</button>
-          </Link>
-        </div>
-=======
->>>>>>> 83df31a09f443ebaf38a72b091e3b7e94641f31d
     </section>
   );
 }
