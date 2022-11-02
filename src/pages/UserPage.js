@@ -78,14 +78,13 @@ function UserPage() {
                   </div>
                   <div className="col">
                     <div className="card coll">
-                      <h6 className="collab-title"></h6>
                       <div className="collab-box">
                       {userDetails && (<div className="prof-title">
                           <h4 className="card-title">{userDetails.name}</h4>
                           <h6 className="card-text">{userDetails.email}</h6>
                         </div>)}
                       </div>
-                      {/* <AllUsers /> */}
+                  
                     </div>
                   </div>
                 </div>

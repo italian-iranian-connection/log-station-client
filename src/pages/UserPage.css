@@ -1,3 +1,7 @@
+.container {
+    font-family: consolas;
+}
+
 .headProfile {
  display: flex;
  flex-wrap: wrap;
@@ -20,6 +24,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 20px;
 }
 
 .coll {
@@ -29,4 +34,8 @@
 
 .collab-title{
     padding: 20px;
+}
+
+.card-body > h6{
+    padding: 10px;
 }
