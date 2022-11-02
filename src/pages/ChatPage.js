@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 import { useState } from "react";
 import Chat from "../components/Chat";
-const socket = io.connect("http://localhost:5005");
+const socket = io.connect(process.env.REACT_APP_API_URL);
 console.log(socket)
 
 function ChatPage() {
