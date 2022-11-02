@@ -1,4 +1,5 @@
 import './App.css';
+
 import { Routes, Route } from "react-router-dom"; 
 import HomePage from './pages/HomePage';
 import Navbar from './components/Navbar';
@@ -11,6 +12,12 @@ import UserPage from './pages/UserPage';
 import EditProfilePage from './pages/EditProfilePage';
 import ProjectPage from './pages/ProjectPage';
 import EditProjectPage from './pages/EditProjectPage';
+import ChatPage from './pages/ChatPage'
+
+
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:5005");
+console.log(socket)
 
 function App() {
   return (
@@ -19,6 +26,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={ <HomePage /> } />
+        <Route path='/chat' element={<ChatPage />}/>
         
         {/* <Route path="/createprofile" element={ <IsPrivate> <UserPage /> </IsPrivate> } />
         <Route path="/signup" element={ <IsAnon> <SignupPage /> </IsAnon> } /> 

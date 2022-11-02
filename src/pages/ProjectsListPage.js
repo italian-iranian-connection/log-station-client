@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 import RiseLoader from "react-spinners/RiseLoader";
 import AddProject from "../components/AddProject";
 import ProjectCard from "../components/ProjectCard";
-
 import { Link } from "react-router-dom";
 
 function ProjectsListPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const style = { textDecoration: "none", color: "fuchsia" };
+  const style = { textDecoration: "none", color: "black" };
 
   const getAllProjects = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -23,6 +22,10 @@ function ProjectsListPage() {
       })
       .catch((error) => console.log(error));
   };
+
+  const updateList = () => {
+    getAllProjects()
+  }
 
   useEffect(() => {
     getAllProjects();
@@ -46,15 +49,18 @@ function ProjectsListPage() {
           </div>
 
           <div className="col-12 col-lg-6">
-            <AddProject />
-          </div>
-
-          <div className="card p-5">
-            <Link to="/signup" style={style}>
-              <h1 className="danger">
-                Sign Up and start collaborating with other developers like you!
-              </h1>
-            </Link>
+            <AddProject updateList={updateList} />
+            <div className="container mt-2">
+              <div className="card p-5">
+                <Link to="/user/edit/:userId" style={style}>
+                  <h1>
+                    Create your profile and start collaborating with other
+                    developers like you!
+                  </h1>
+                  <button className="btn btn-dark mt-2">Profile</button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

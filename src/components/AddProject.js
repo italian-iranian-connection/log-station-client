@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import RiseLoader from "react-spinners/RiseLoader";
 
-function AddProject() {
+function AddProject({updateList}) {
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [technology, setTechnology] = useState("")
@@ -13,7 +12,7 @@ function AddProject() {
     const [status, setStatus] = useState("planned")
     const [screenshoot, setScreenshoot] = useState("https://res.cloudinary.com/daualsgyz/image/upload/v1667058915/log-station/m36rz07pitw0tjmprqpp.jpg")
     const [imgLoading, setImgLoading] = useState(false)
-    const navigate = useNavigate();
+    
 
     const handleProjectForm = (e) => {
       e.preventDefault()
@@ -21,7 +20,14 @@ function AddProject() {
       const storedToken = localStorage.getItem("authToken")   
       axios.post(`${process.env.REACT_APP_API_URL}/api/projects`, newProject, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then(() => {
-      //navigate('/projects');
+        setName("")
+        setDescription("")
+        setTechnologies([])
+        setDeploymentUrl("")
+        setGitRepoUrl("")
+        setStatus("planned")
+        setScreenshoot("https://res.cloudinary.com/daualsgyz/image/upload/v1667058915/log-station/m36rz07pitw0tjmprqpp.jpg")
+        updateList()
     })
     }
 

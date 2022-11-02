@@ -1,6 +1,4 @@
 
-import "./ProfileCard.css";
-
 function ProfileCard({
   screenshoot,
   headline,
