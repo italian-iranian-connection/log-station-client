@@ -15,7 +15,7 @@ function HomePage() {
           text-center
           style={{ border: "none" }}
         >
-            <div classNama="col">
+            <div className="col homePageColum">
               <h1 id="about">ABOUT</h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,

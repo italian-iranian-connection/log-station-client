@@ -69,7 +69,7 @@ function ProjectDetails({
       {user?._id && user._id === userId && (
             <div className="m-1">
             <Link to={`/projects/edit/${_id}`} style={style} >
-              <button className="btn btn-dark">Update Your Project</button>
+              <button className="btn btn-outline-dark">Update Your Project</button>
               </Link>
             </div>
           )}

@@ -39,9 +39,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage p-5">
+    <div className="LoginPage p-5 ms-5 me-5">
       <div className="row">
-        <div className="col-12 col-lg-6 mt-5">
+        <div className="col-12 col-lg-6 mt-5 ">
           <div className="container frame">
             <img
               style={{

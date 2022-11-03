@@ -9,8 +9,8 @@ function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
 
   return (
     <div className="ProjectCard card m-2 p-2">
-      <Link to={`/projects/${_id}`} style={style}>
-        <div className="row">
+      <div className="row">
+        <Link to={`/projects/${_id}`} style={style}>
           <div className="col">
             <img
               src={screenshoot}
@@ -30,19 +30,21 @@ function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
             </p>
             <h6 className="card-text">Techologies: </h6>
             {technologies.map((tech, index) => {
-              return <span key={index}>✩{tech} </span>
+              return <span key={index}>✩{tech} </span>;
             })}
           </div>
-          {user?._id && user._id === userId && (
-
-            <div className="m-1">
+        </Link> 
+        
+        {user?._id && user._id === userId && (
+          <div className="m-1">
             <Link to={`/projects/edit/${_id}`} style={style}>
-              <button className="btn btn-outline-dark">Update Your Project</button>
-              </Link>
-            </div>
-          )}
-        </div>
-      </Link>
+              <button className="btn btn-outline-dark">
+                Update Your Project
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
