@@ -37,7 +37,7 @@ function SignupPage(props) {
   return (
     <div className="SignupPage container card border-0 shadow-none" style={{display: "flex" }}>
   <div class="row justify-content-md-center">
-  <div class="col-lg-5" style={{marginTop: "10%" }}>
+  <div class="col-lg-5" style={{marginTop: "12%" }}>
           <div className="frame">
             <img
               style={{

@@ -40,9 +40,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage p-5 ms-5 me-5">
-      <div className="row">
-        <div className="col-12 col-lg-6 mt-5 ">
+    <div className="SignupPage container card border-0 shadow-none" style={{display: "flex" }}>
+  <div class="row justify-content-md-center">
+  <div class="col-lg-5" style={{marginTop: "12%" }}>
           <div className="container frame">
             <img
               style={{
@@ -105,6 +105,7 @@ function LoginPage() {
         </div>
       </div>
     </div>
+
 
   );
 }
