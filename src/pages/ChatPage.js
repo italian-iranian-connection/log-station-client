@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import { useState } from "react";
 import Chat from "../components/Chat";
 const storedToken = localStorage.getItem("authToken") 
-const socket = io.connect( process.env.REACT_APP_WS_SERVER , {                                     //process.env.REACT_APP_API_URL,
+const socket = io.connect(process.env.REACT_APP_WS_SERVER , {         //process.env.REACT_APP_API_URL,
   headers: { Authorization: `Bearer ${storedToken}` }});
 console.log(socket)
 
