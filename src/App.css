@@ -3,17 +3,17 @@
   font-family: consolas;
 }
 
+
 .EditProfile .special {
   background-image: url("../src/images/bg/4.webp");
-}
-
-.card {
-  box-shadow: 0 10px 10px rgb(174, 173, 173);
   background-size: cover;
   background-attachment: scroll;
   background-position: center center;
   background-repeat: no-repeat;
   background-color: white;
+}
+.card {
+  box-shadow: 0 10px 10px rgb(174, 173, 173);
 }
 
 .HomePage{

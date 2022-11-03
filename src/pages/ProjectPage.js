@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import RiseLoader from "react-spinners/RiseLoader";
 import ProjectDetails from "../components/ProjectDetails";
@@ -11,6 +11,8 @@ function ProjectPage() {
   const [userDetails, setUserDetails] = useState(null);
   const { projectId } = useParams();
   const storedToken = localStorage.getItem("authToken");
+  const style = { textDecoration: "none", color: "black" };
+
 
   const getProjectDetails = () => {
     axios
@@ -44,7 +46,7 @@ function ProjectPage() {
   
 
   return (
-    <div className="ProjectPage">
+    <div className="ProjectPage p-4">
       <RiseLoader
         color="yellow"
         loading={loading}
@@ -59,6 +61,13 @@ function ProjectPage() {
           </div>
           <div className="col-12 col-lg-6">
           <ProfileCard {...userDetails.profile} />   
+          
+          <div className="card p-4 mt-2">
+            <Link to="/chat" style={style}>
+            <h5>Contact <em className="text-capitalize">{userDetails.name}</em> and start collaborating on this project!</h5>
+              <button className="btn btn-warning m-2">Start Conversation</button>
+            </Link>
+            </div>
           </div>
           </div>
           }

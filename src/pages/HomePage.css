@@ -41,11 +41,11 @@
     margin: 0s;
 }
 
-.col{
-    padding: 5%;
-    margin: 0 20%;
-    line-height: 2em;
-    font-family: 'Courier New', Courier, monospace;
+.homePageColum {
+  padding: 5%;
+  margin: 0 20%;
+  line-height: 2em;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #about{
