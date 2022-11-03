@@ -4,7 +4,7 @@ import Chat from "../components/Chat";
 const storedToken = localStorage.getItem("authToken") 
 const socket = io.connect(process.env.REACT_APP_WS_SERVER , {         //process.env.REACT_APP_API_URL,
   headers: { Authorization: `Bearer ${storedToken}` }});
-console.log(socket)
+
 
 function ChatPage() {
 

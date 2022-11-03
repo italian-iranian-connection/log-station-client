@@ -5,7 +5,6 @@
     background-size: cover;
     width: 100%; 
     min-height: 95vh;
-
 } 
 
 .homeTitle {
@@ -24,7 +23,7 @@
 .footer-text{
     color: white;
     font-size: 18px;
-    font-family: consolas;
+    font-family:'Courier New', Courier, monospace;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
