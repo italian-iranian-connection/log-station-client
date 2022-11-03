@@ -24,9 +24,9 @@ function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
           <div className="col">
             <h5 className="card-title text-uppercase">{name}</h5>
             <p className="text-align-end">
-              {status === "planned" && `🟢 Status: ${status}`}
-              {status === "ongoing" && `🟡 Status: ${status}`}
-              {status === "finished" && `🔴 Status: ${status}`}
+              {status === "planned" && `Status: ${status} 🟢`}
+              {status === "ongoing" && `Status: ${status} 🟡`}
+              {status === "finished" && `Status: ${status} 🔴`}
             </p>
             <h6 className="card-text">Techologies: </h6>
             {technologies.map((tech, index) => {
@@ -34,8 +34,11 @@ function ProjectCard({ name, technologies, status, screenshoot, _id, userId }) {
             })}
           </div>
           {user?._id && user._id === userId && (
+
             <div className="m-1">
-              <button className="btn btn-dark">Update Your Project</button>
+            <Link to={`/projects/edit/${_id}`} style={style}>
+              <button className="btn btn-outline-dark">Update Your Project</button>
+              </Link>
             </div>
           )}
         </div>

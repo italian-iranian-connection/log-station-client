@@ -1,7 +1,9 @@
 import io from "socket.io-client";
 import { useState } from "react";
 import Chat from "../components/Chat";
-const socket = io.connect(process.env.REACT_APP_API_URL);
+const storedToken = localStorage.getItem("authToken") 
+const socket = io.connect( 'http://localhost:5005' , {                                     //process.env.REACT_APP_API_URL,
+  headers: { Authorization: `Bearer ${storedToken}` }});
 console.log(socket)
 
 function ChatPage() {

@@ -1,14 +1,16 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import RiseLoader from "react-spinners/RiseLoader";
 import AddProject from "../components/AddProject";
 import ProjectCard from "../components/ProjectCard";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 
 function ProjectsListPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const style = { textDecoration: "none", color: "black" };
+  const { user } = useContext(AuthContext);
 
   const getAllProjects = () => {
     const storedToken = localStorage.getItem("authToken");
@@ -49,18 +51,19 @@ function ProjectsListPage() {
           </div>
 
           <div className="col-12 col-lg-6">
-            <AddProject updateList={updateList} />
-            <div className="container mt-2">
+          <div className="container mt-2">
               <div className="card p-5">
-                <Link to="/user/edit/:userId" style={style}>
+                <Link to={`/user/${user._id}`} style={style}>
                   <h1>
                     Create your profile and start collaborating with other
                     developers like you!
                   </h1>
-                  <button className="btn btn-dark mt-2">Profile</button>
+                  <button className="btn btn-warning mt-2">Profile</button>
                 </Link>
               </div>
             </div>
+            <AddProject updateList={updateList} />
+            
           </div>
         </div>
       </div>

@@ -103,14 +103,14 @@ function AddProject({updateList}) {
       </label>
 
       <div className="text-center">
-    <RiseLoader
+      <RiseLoader
         color="yellow"
         loading={imgLoading}
         size={10}
         aria-label="Loading Spinner"
         data-testid="loader"
       /> 
-</div>
+      </div>
 
       <p className="form-label m-2"> Please, check if you filled in all the * fields</p>
       <button className="btn btn-warning" type="submit">Submit</button> 
