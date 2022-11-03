@@ -101,7 +101,7 @@ function EditProfilePage() {
       />
     <div className="card m-5 special p-4">
       <div className="card m-2 p-2">
-        <div class="row ">
+        <div className="row ">
           <div className="col-12 col-lg-6">
             <img src={screenshoot} alt="collaboration" width="150px" />
           </div>
