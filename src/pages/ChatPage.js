@@ -7,7 +7,7 @@ import './Chat.css'
 const storedToken = localStorage.getItem("authToken") 
 const socket = io.connect(process.env.REACT_APP_WS_SERVER , {   
   headers: { Authorization: `Bearer ${storedToken}` }});
-console.log(socket)
+
 
 function ChatPage() {
 
