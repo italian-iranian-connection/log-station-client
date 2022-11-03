@@ -13,9 +13,6 @@ import ProjectPage from "./pages/ProjectPage";
 import EditProjectPage from "./pages/EditProjectPage";
 import ChatPage from "./pages/ChatPage";
 
-import io from "socket.io-client";
-const socket = io.connect(process.env.REACT_APP_WS_SERVER);
-console.log(socket);
 
 function App() {
   return (
@@ -23,7 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/chat" element={ <ChatPage />} />
 
           <Route
             path="/user/:userId"
