@@ -11,7 +11,7 @@ function HomePage() {
         <div className="context"></div>
 
         <div className="home" text-center style={{ border: "none" }}>
-          <div className="col">
+          <div className="col homePageColum">
             <h1 id="about">
               Log Station can help you collaborate, plan and build your
               projects
