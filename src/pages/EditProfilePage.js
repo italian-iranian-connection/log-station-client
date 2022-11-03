@@ -120,6 +120,7 @@ function EditProfilePage() {
       
         <div className="row p-4">
           <div className="col col-lg-6">
+          <h3 className="mt-2">Add any information You'd like to share.</h3>
             <form className="form card mt-2 p-3" onSubmit={handleFormSubmit}>
               <label className="form-label">
                 Headline:

@@ -30,9 +30,10 @@ function Chat({ socket, username, room }) {
   }, []);
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <p>Live Chat</p>
+    <div className="Chat ps-5 p-1 ">
+    <div className="card chat-window m-5">
+      <div className="card-title border">
+        <h3 className="pt-3 ">Live Chat</h3>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
@@ -56,7 +57,7 @@ function Chat({ socket, username, room }) {
           })}
         </ScrollToBottom>
       </div>
-      <div className="chat-footer">
+      <div className="chat-footer border">
         <input
           type="text"
           value={currentMessage}
@@ -70,7 +71,8 @@ function Chat({ socket, username, room }) {
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
-    </div>
+      </div>
+      </div>
   );
 }
 
