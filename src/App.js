@@ -14,7 +14,7 @@ import EditProjectPage from "./pages/EditProjectPage";
 import ChatPage from "./pages/ChatPage";
 
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:5005");
+const socket = io.connect(process.env.REACT_APP_WS_SERVER);
 console.log(socket);
 
 function App() {
