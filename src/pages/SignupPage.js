@@ -37,7 +37,7 @@ function SignupPage(props) {
   return (
     <div className="SignupPage p-5">
       <div className="row">
-        <div className="col col-lg-6 mt-5">
+        <div className="col-12 col-lg-6 mt-5">
           <div className="container frame">
             <img
               style={{
@@ -52,7 +52,7 @@ function SignupPage(props) {
           </div>
         </div>
 
-        <div className="col col-lg-6 mt-5">
+        <div className="col-12 col-lg-6 mt-5">
           <h1>Sign Up</h1>
           <form onSubmit={handleSignupSubmit} className="form">
             <div className="form-outline mb-2">

@@ -41,7 +41,7 @@ function LoginPage() {
   return (
     <div className="LoginPage p-5">
       <div className="row">
-        <div className="col col-lg-6 mt-5">
+        <div className="col-12 col-lg-6 mt-5">
           <div className="container frame">
             <img
               style={{
@@ -56,7 +56,7 @@ function LoginPage() {
           </div>
         </div>
 
-        <div className="col col-lg-6 mt-5">
+        <div className="col-12 col-lg-6 mt-5">
           <h1>Login</h1>
           <form onSubmit={handleLoginSubmit} className="form">
             <div className="form-outline mb-2">

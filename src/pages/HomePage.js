@@ -15,7 +15,7 @@ function HomePage() {
           text-center
           style={{ border: "none" }}
         >
-            <div class="col">
+            <div classNama="col">
               <h1 id="about">ABOUT</h1>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
@@ -60,14 +60,14 @@ function HomePage() {
           </div>
 
           <div className="logo">
-            <img src={image} />
+            <img src={image} alt="main page"/>
             <h3>LOG STATION</h3>
           </div>
 
           <div>
             <p>Alessandra Scarpellini</p>
-            <p>Italy</p>
-            <p>aleale81@gmail.com</p>
+            <p>Amsterdam</p>
+            <p>https://github.com/Aleale81</p>
           </div>
 
         </div>
