@@ -13,7 +13,7 @@ function HomePage() {
         <div className="home" text-center style={{ border: "none" }}>
           <div className="col">
             <h1 id="about">
-              Log Station can help you collborate, plan and build your
+              Log Station can help you collaborate, plan and build your
               projects
             </h1>
             <p>
