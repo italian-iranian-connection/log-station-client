@@ -8,17 +8,15 @@ function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
 
-
-
   console.log(user);
 
   return (
     <nav className="nav">
       <div>
-        <NavLink
-          to="/"
-        >
-          <button id="home" className="navButton">Home</button>
+        <NavLink to="/">
+          <button id="home" className="navButton">
+            Home
+          </button>
         </NavLink>
       </div>
       <div>
@@ -29,9 +27,7 @@ function Navbar() {
       {isLoggedIn && (
         <>
           <div>
-            <NavLink
-              to="/projects"
-            >
+            <NavLink to="/projects">
               <button className="navButton">Projects</button>
             </NavLink>
           </div>
@@ -43,9 +39,7 @@ function Navbar() {
           <div>
             <span>
               {user && (
-                <NavLink
-                  to={`/user/${user._id}`}
-                >
+                <NavLink to={`/user/${user._id}`}>
                   <button className="navButton">Profile</button>
                 </NavLink>
               )}
@@ -53,9 +47,7 @@ function Navbar() {
           </div>
 
           <div>
-            <NavLink
-              to="/"
-            >
+            <NavLink to="/">
               <button className="navButton endBtn" onClick={logOutUser}>
                 Logout
               </button>
@@ -67,17 +59,13 @@ function Navbar() {
       {!isLoggedIn && (
         <>
           <div>
-            <NavLink
-              to="/signup"
-            >
+            <NavLink to="/signup">
               {" "}
               <button className="navButton">Sign Up</button>{" "}
             </NavLink>
           </div>
           <div>
-            <NavLink
-              to="/login"
-            >
+            <NavLink to="/login">
               {" "}
               <button className="navButton endBtn">Login</button>{" "}
             </NavLink>
