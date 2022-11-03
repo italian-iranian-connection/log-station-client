@@ -36,8 +36,10 @@ function UserPage() {
   }, []);
 
   return (
+    <div className="container card justify-content-md-center border-0 shadow-none" style={{display: "flex" }}>
+
     <div className="UserPage">
-      <div className="container card m-5 p-5">
+      <div className="card m-5 p-5">
         <div className="row">
           <div className="col">
             {userDetails && (
@@ -70,7 +72,7 @@ function UserPage() {
           </div>
 
           <div className="col">
-            <div className="card coll p-5">
+            <div className="card coll p-4">
               {userDetails && (
                 <div className="prof-title">
                   <h2 className="card-title">{userDetails.name}</h2>
@@ -82,7 +84,7 @@ function UserPage() {
         </div>
       </div>
 
-      <div className="container card m-5 p-5">
+      <div className="card m-5 p-5">
         {!userDetails?.profile?.headline && (
           <>
             <h6 style={{ textAlign: "left" }}>
@@ -112,6 +114,7 @@ function UserPage() {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }

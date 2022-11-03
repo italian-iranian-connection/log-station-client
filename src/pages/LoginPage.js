@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import image from "../images/default-img/door-logo.jpg";
 
+
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,10 +57,10 @@ function LoginPage() {
           </div>
         </div>
 
-        <div className="col-12 col-lg-6 mt-5">
+        <div class="col-lg-5" style={{marginTop: "10%", padding: "10px"}}>
           <h1>Login</h1>
           <form onSubmit={handleLoginSubmit} className="form">
-            <div className="form-outline mb-2">
+            <div className="form-outline mb-2" >
               <label className="form-label">
                 Email
                 <input
@@ -104,6 +105,7 @@ function LoginPage() {
         </div>
       </div>
     </div>
+
   );
 }
 

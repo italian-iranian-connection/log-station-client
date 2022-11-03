@@ -18,7 +18,7 @@ function Navbar() {
         <NavLink
           to="/"
         >
-          <button className="navButton">Home</button>
+          <button id="home" className="navButton">Home</button>
         </NavLink>
       </div>
       <div>
