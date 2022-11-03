@@ -1,19 +1,15 @@
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { useNavigate, useParams } from "react-router-dom";
-import image from "./def-profile.png"
-// const API_URL = "http://localhost:5005";
 
 function AddProfile({ refreshPage }) {
   const [headline, setHeadline] = useState("");
   const [basedIn, setBasedIn] = useState("");
-  const [technology, setTechnology] = useState("")
+  const [technology, setTechnology] = useState("");
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
-
-  const [screenshoot, setScreenshoot] = useState(image);
-  // const [profileImg, setProfileImg] = useState("https://www.canva.com/templates/EAEeKH905XY-yellow-and-black-gamer-grunge-twitch-profile-picture/");
+  const [screenshoot, setScreenshoot] = useState("https://res.cloudinary.com/daualsgyz/image/upload/v1667434006/log-station/r22gf1b7ypkurufnzfli.png");
 
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -41,22 +37,25 @@ function AddProfile({ refreshPage }) {
   };
 
   const addTecnology = (technology, e) => {
-    e.preventDefault()
-    if(technology){  
-    setTechnologies((prevTechnologies) => {
-      const newArr = [...prevTechnologies, technology]
-      setTechnology("")
-      return newArr
-    })}
-  }
+    e.preventDefault();
+    if (technology) {
+      setTechnologies((prevTechnologies) => {
+        const newArr = [...prevTechnologies, technology];
+        setTechnology("");
+        return newArr;
+      });
+    }
+  };
 
   const handleFileUpload = (e) => {
     console.log("The file to be uploaded is: ", e.target.files[0]);
     const uploadData = new FormData();
     uploadData.append("screenshoot", e.target.files[0]);
-    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData).then((response) => {
-      setScreenshoot(response.data.screenshoot);
-    });
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
+      .then((response) => {
+        setScreenshoot(response.data.screenshoot);
+      });
   };
 
   return (
@@ -71,6 +70,7 @@ function AddProfile({ refreshPage }) {
                 type="text"
                 name="headline"
                 value={headline}
+                required
                 onChange={(e) => setHeadline(e.target.value)}
                 placeholder="Say something about yourself..."
               />
@@ -94,10 +94,29 @@ function AddProfile({ refreshPage }) {
           <div className="row g-3 align-items-center">
             <label className="form-label">
               Techologies you know (or want to practice):
-              <input className="form-control m-2" type="text" name="technologies" value={technology} onChange={(e)=>{setTechnology(e.target.value)}} placeholder="React..."/>
-       <button className="btn btn-dark" onClick={(e) => {addTecnology(technology, e)}} >Add</button> 
-      <p>{technologies.map((tech,index)=>{ return <span key={index}>{tech} </span>})}</p>
-
+              <input
+                className="form-control m-2"
+                type="text"
+                name="technologies"
+                value={technology}
+                onChange={(e) => {
+                  setTechnology(e.target.value);
+                }}
+                placeholder="React..."
+              />
+              <button
+                className="btn btn-dark"
+                onClick={(e) => {
+                  addTecnology(technology, e);
+                }}
+              >
+                Add
+              </button>
+              <p>
+                {technologies.map((tech, index) => {
+                  return <span key={index}> ✩{tech} </span>;
+                })}
+              </p>
             </label>
           </div>
 
@@ -109,6 +128,7 @@ function AddProfile({ refreshPage }) {
                 type="text"
                 name="githubUrl"
                 value={githubUrl}
+                required
                 onChange={(e) => setGithubUrl(e.target.value)}
               />
             </label>

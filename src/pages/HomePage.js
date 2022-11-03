@@ -1,9 +1,8 @@
-import "./HomePage.css";
 
 
 function HomePage(){
     return(
-        <div className="homePage">
+        <div className="HomePage">
             <h1 className="homeTitle">LOG STATION</h1>
         </div>
     )

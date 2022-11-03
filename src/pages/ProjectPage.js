@@ -21,6 +21,7 @@ function ProjectPage() {
         setProjectDetails(projectDetails.data);
         setLoading(false);
         getUser(projectDetails.data.userId)
+
       });
   };
 
@@ -51,13 +52,13 @@ function ProjectPage() {
         aria-label="Loading Spinner"
         data-testid="loader"
       />
-           {userDetails?.profile &&
+           {userDetails?.profile?._id  &&
            <div className="row mt-2">
            <div className="col-12 col-lg-6">
            <ProjectDetails {...projectDetails} /> 
           </div>
           <div className="col-12 col-lg-6">
-            <ProfileCard {...userDetails.profile} profileData={userDetails} /> 
+          <ProfileCard {...userDetails.profile} />   
           </div>
           </div>
           }

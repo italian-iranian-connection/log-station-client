@@ -2,17 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { useParams, useNavigate } from "react-router-dom";
-import image from "./def-profile.png"
-
-
-//"https://www.canva.com/templates/EAEeKH905XY-yellow-and-black-gamer-grunge-twitch-profile-picture/",
-
-// { userDetails?.profile?.headline
-//   ? renderProfileDetails()
-//   : renderAddProfileButton()
-// }
-
-// const API_URL = "http://localhost:5005";
+import RiseLoader from "react-spinners/RiseLoader";
 
 function EditProfilePage() {
   const [headline, setHeadline] = useState("");
@@ -20,18 +10,21 @@ function EditProfilePage() {
   const [technology, setTechnology] = useState("");
   const [technologies, setTechnologies] = useState([]);
   const [githubUrl, setGithubUrl] = useState("");
-  const [screenshoot, setScreenshoot] = useState(image);
+  const [screenshoot, setScreenshoot] = useState();
+  const [imgLoading, setImgLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { user } = useContext(AuthContext);
 
   const { userId } = useParams();
   const navigate = useNavigate();
 
-  const storedToken = localStorage.getItem("authToken");
-
   useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         const oneUser = response.data.profile;
         setHeadline(oneUser.headline);
@@ -39,20 +32,23 @@ function EditProfilePage() {
         setTechnologies(oneUser.technologies);
         setGithubUrl(oneUser.githubUrl);
         setScreenshoot(oneUser.screenshoot);
-
-        // setProfileImg(oneUser.profileImg);
+        setLoading(false);
       })
       .catch((error) => console.log(error));
   }, [userId]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    const storedToken = localStorage.getItem("authToken");
     const profile = { headline, basedIn, technologies, githubUrl, screenshoot };
 
-    axios.put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}/`, profile).then((response) => {
-      navigate(`/user/${userId}`);
-    });
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/api/user/${user._id}/`, profile, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => {
+        navigate(`/user/${userId}`);
+      });
   };
 
   const addTecnology = (technology, e) => {
@@ -67,9 +63,12 @@ function EditProfilePage() {
   };
 
   const deleteProfile = () => {
-    const profile = {screenshoot: image};
+    const storedToken = localStorage.getItem("authToken");
+    const profile = { screenshoot };
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, profile)
+      .put(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, profile, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((res) => {
         console.log("res: ", res);
         navigate(`/user/${userId}`);
@@ -78,134 +77,146 @@ function EditProfilePage() {
   };
 
   const handleFileUpload = (e) => {
-    console.log("The file to be uploaded is: ", e.target.files[0]);
+    setImgLoading(true);
     const uploadData = new FormData();
     uploadData.append("screenshoot", e.target.files[0]);
-    axios.post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData).then((response) => {
-      console.log(response.data.screenshoot);
-      setScreenshoot(response.data.screenshoot);
-    });
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
+      .then((response) => {
+        console.log(response.data.screenshoot);
+        setScreenshoot(response.data.screenshoot);
+        setImgLoading(false);
+      });
   };
 
   return (
-    <>
-      <div className="container">
-        <div className="container card m-5 p-5" style={{ maxWwidth: "50vw" }}>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-            <div className="col">
-              {user && (
-                <>
-                  <h1 className="card-title">{user.name}</h1>
-                  <h4 className="card-text">{user.email}</h4>
-                </>
-              )}
-            </div>
+
+    <div className="EditProfile">
+    <RiseLoader
+        color="yellow"
+        loading={loading}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    <div className="card m-5 special p-4">
+      <div className="card m-2 p-2">
+        <div class="row ">
+          <div className="col-12 col-lg-6">
+            <img src={screenshoot} alt="collaboration" width="150px" />
+          </div>
+
+          <div className="col-12 col-lg-6">
+            {user && (
+              <>
+                <h1 className="card-title">{user.name}</h1>
+                <h4 className="card-text">{user.email}</h4>
+              </>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="EditProfile">
-        <div className="container">
-          <div className="container card m-5 p-5" style={{ maxWwidth: "50vw" }}>
-            <div className="col col-lg-6" style={{ marginLeft: "50%" }}>
-              <form className="form mt-2 p-3" onSubmit={handleFormSubmit}>
-                <div className="row g-3 align-items-center">
-                  <label className="form-label">
-                    Headline:
-                    <input
-                      className="form-control m-2"
-                      type="text"
-                      name="headline"
-                      value={headline}
-                      onChange={(e) => setHeadline(e.target.value)}
-                    />
-                  </label>
-                </div>
+      
+        <div className="row p-4">
+          <div className="col col-lg-6">
+            <form className="form card mt-2 p-3" onSubmit={handleFormSubmit}>
+              <label className="form-label">
+                Headline:
+                <input
+                  className="form-control mt-2"
+                  type="text"
+                  name="headline"
+                  value={headline}
+                  onChange={(e) => setHeadline(e.target.value)}
+                />
+              </label>
 
-                <div className="row g-3 align-items-center">
-                  <label className="form-label">
-                    Based in:
-                    <input
-                      className="form-control m-2"
-                      type="text"
-                      name="basedIn"
-                      value={basedIn}
-                      onChange={(e) => setBasedIn(e.target.value)}
-                    />
-                  </label>
-                </div>
+              <label className="form-label">
+                Based in:
+                <input
+                  className="form-control mt-2"
+                  type="text"
+                  name="basedIn"
+                  value={basedIn}
+                  onChange={(e) => setBasedIn(e.target.value)}
+                />
+              </label>
 
-                <div className="row g-3 align-items-center">
-                  <label className="form-label">
-                    Techologies you know (or want to practice):
-                    <input
-                      className="form-control m-2"
-                      type="text"
-                      name="technologies"
-                      value={technology}
-                      onChange={(e) => {
-                        setTechnology(e.target.value);
-                      }}
-                      placeholder="Anything new?"
-                    />
-                    <button
-                      className="btn btn-dark"
-                      onClick={(e) => {
-                        addTecnology(technology, e);
-                      }}
-                    >
-                      Add
-                    </button>
-                    <p>
-                      {technologies.map((tech, index) => {
-                        return <span key={index}>✩{tech} </span>;
-                      })}
-                    </p>
-                  </label>
-                </div>
-
-                <div className="row g-3 align-items-center">
-                  <label className="form-label">
-                    Your GitHub profile:
-                    <input
-                      className="form-control m-2"
-                      type="text"
-                      name="githubUrl"
-                      value={githubUrl}
-                      onChange={(e) => setGithubUrl(e.target.value)}
-                    />
-                  </label>
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">
-                    Profile Picture:
-                    <input
-                      className="form-control"
-                      type="file"
-                      name="screenshoot"
-                      onChange={(e) => {
-                        handleFileUpload(e);
-                      }}
-                    />
-                  </label>
-                </div>
-
-                <button type="submit" className="btn btn-warning">
-                  Submit Profile
+              <label className="form-label">
+                Techologies you know (or want to practice):
+                <input
+                  className="form-control mt-2"
+                  type="text"
+                  name="technologies"
+                  value={technology}
+                  onChange={(e) => {
+                    setTechnology(e.target.value);
+                  }}
+                  placeholder="Anything new?"
+                />
+                <button
+                  className="btn btn-dark mt-2"
+                  onClick={(e) => {
+                    addTecnology(technology, e);
+                  }}
+                >
+                  Add
                 </button>
-              </form>
+                <p>
+                  {technologies.map((tech, index) => {
+                    return <span key={index}> ✩{tech} </span>;
+                  })}
+                </p>
+              </label>
 
-              <div>
-                <button className="btn btn-danger" onClick={deleteProfile}>
-                  Delete Profile
-                </button>
+              <label className="form-label">
+                Your GitHub profile:
+                <input
+                  className="form-control mt-2"
+                  type="text"
+                  name="githubUrl"
+                  value={githubUrl}
+                  onChange={(e) => setGithubUrl(e.target.value)}
+                />
+              </label>
+
+              <label className="form-label">
+                Profile Picture:
+                <input
+                  className="form-control"
+                  type="file"
+                  name="screenshoot"
+                  onChange={(e) => {
+                    handleFileUpload(e);
+                  }}
+                />
+              </label>
+
+              <div className="text-center">
+                <RiseLoader
+                  color="yellow"
+                  loading={imgLoading}
+                  size={10}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
               </div>
+
+              <button type="submit" className="btn btn-warning mt-2">
+                Submit Profile
+              </button>
+            </form>
+
+            <div>
+              <button className="btn btn-danger mt-4" onClick={deleteProfile}>
+                Delete Profile
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
