@@ -47,9 +47,47 @@
 }
 
 #about{
-    padding: 10px;
-
+    padding: 40px;
 }
+
+.git {
+  text-decoration: none;
+  color: white;
+  background-color: #0b060765;
+  padding: 10px;
+  border-radius: 10px;
+}
+.git:hover{
+  color: gold;
+}
+
+
+.scroll-container {
+  display: flex;
+  top: 0;
+  right:0;
+  height: 100%;
+}
+
+.scroll-container:before {
+  content: '';
+  display: block;
+  pointer-events: none;
+}
+
+.scroll-container a {
+  color: white;
+  text-decoration: none;
+  position: sticky;
+  top: 88vh;
+  cursor: pointer;
+  font-size: 20px;
+}
+.scroll-container a:hover {
+  color: gold;
+}
+
+
 
 
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');

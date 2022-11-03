@@ -35,10 +35,10 @@ function SignupPage(props) {
   };
 
   return (
-    <div className="SignupPage p-5">
-      <div className="row">
-        <div className="col-12 col-lg-6 mt-5">
-          <div className="container frame">
+    <div className="SignupPage container card border-0 shadow-none" style={{display: "flex" }}>
+  <div class="row justify-content-md-center">
+  <div class="col-lg-5" style={{marginTop: "10%" }}>
+          <div className="frame">
             <img
               style={{
                 height: "450px",
@@ -52,7 +52,7 @@ function SignupPage(props) {
           </div>
         </div>
 
-        <div className="col-12 col-lg-6 mt-5">
+        <div class="col-lg-5" style={{marginTop: "10%", padding: "10px"}}>
           <h1>Sign Up</h1>
           <form onSubmit={handleSignupSubmit} className="form">
             <div className="form-outline mb-2">
@@ -108,7 +108,6 @@ function SignupPage(props) {
           <div className="mt-5">
             <p>Already have account?</p>
             <Link className="btn btn-warning" to={"/login"}>
-              {" "}
               Login
             </Link>
           </div>

@@ -10,27 +10,19 @@ function HomePage() {
       <div className="body-part">
         <div className="context"></div>
 
-        <div
-          className="home"
-          text-center
-          style={{ border: "none" }}
-        >
-            <div classNama="col">
-              <h1 id="about">ABOUT</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                quidem iusto aliquam culpa distinctio maxime facilis odio soluta
-                quis reprehenderit deserunt atque porro exercitationem veniam
-                maiores! Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Minus, quidem iusto aliquam culpa distinctio maxime
-                facilis odio soluta quis reprehenderit deserunt possimus tempora
-                aliquid officia, atque porro exercitationem veniam maiores!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
-                quidem iusto aliquam culpa distinctio maxime facilis odio soluta
-                quis reprehenderit deserunt possimus tempora aliquid officia,
-                atque porro exercitationem veniam maiores!
-              </p>
-     
+        <div className="home" text-center style={{ border: "none" }}>
+          <div className="col">
+            <h1 id="about">
+              Log Station can help you collborate, plan and build your
+              projects
+            </h1>
+            <p>
+              As web developers adapt to the constantly evolving technologies in
+              the digital world, we aim to help you find collaborators for your
+              projects, get involved in already planned projects and
+              collaborate effectively, get and stay aligned, and make
+              complexity clearer.
+            </p>
           </div>
         </div>
 
@@ -52,24 +44,34 @@ function HomePage() {
 
       <div className="footer">
         <div className="footer-text">
-
           <div>
-            <p>Mog Rouhi</p>
+            <h5>Mog Rouhi</h5>
             <p>Portugal</p>
-            <p>mog.rouhi@gmail.com</p>
+            <a
+              className="git"
+              href="https://github.com/Mog-Rouhi"
+              target="_blank"
+            >
+              Check My Github
+            </a>
           </div>
 
           <div className="logo">
-            <img src={image} alt="main page"/>
-            <h3>LOG STATION</h3>
+            <img src={image} alt="main page" />
+            <div className="scroll-container"><a href="#top"><h3>LOG STATION</h3></a></div>
           </div>
 
           <div>
-            <p>Alessandra Scarpellini</p>
+            <h5>Alessandra Scarpellini</h5>
             <p>Amsterdam</p>
-            <p>https://github.com/Aleale81</p>
+            <a
+              className="git"
+              href="https://github.com/Aleale81"
+              target="_blank"
+            >
+              Check My Github
+            </a>
           </div>
-
         </div>
 
         <div className="light x1"></div>
