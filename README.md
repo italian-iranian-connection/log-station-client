@@ -52,3 +52,5 @@ Our server on --> [fly.io](https://log-station.fly.dev/)
 
 ## Visit our website!
 ![Home page](./src/images/default-img/Home-page-screenshot.png)
+
+[GO!](https://logstation.netlify.app)
