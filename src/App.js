@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
 import ProjectsListPage from "./pages/ProjectsListPage";
@@ -87,7 +87,9 @@ function App() {
               </IsAnon>
             }
           />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        
     </div>
   );
 }

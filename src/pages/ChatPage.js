@@ -45,12 +45,12 @@ function ChatPage() {
           />
           </lable>
           <lable className="form-label">
-          Who do you wanna chat with?
+          Choose a room:
           <input
           className="form-control mt-2"
             type="text"
             name="room"
-            placeholder="Bob..."
+            placeholder="1.."
             required
             onChange={(event) => {
               setRoom(event.target.value);
