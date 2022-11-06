@@ -44,13 +44,13 @@ REACT_APP_API_URL --> API server
 REACT_APP_WS_SERVER --> Web socket server
 
 
-## Backend  
+## Back-end  
  
-Our backend repository --> [log-station-server](https://github.com/italian-iranian-connection/log-station-server)
+Backend repository --> [log-station-server](https://github.com/italian-iranian-connection/log-station-server)
 
-Our server on --> [fly.io](https://log-station.fly.dev/)
+Server on --> [fly.io](https://log-station.fly.dev/)
 
-## Visit our website!
+## Visit the website!
 ![Home page](./src/images/default-img/Home-page-screenshot.png)
 
 [GO!](https://logstation.netlify.app)
