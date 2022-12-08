@@ -51,8 +51,9 @@ Backend repository --> [log-station-server](https://github.com/italian-iranian-c
 Server on --> [fly.io](https://log-station.fly.dev/)
 
 ## Visit the website!
-[GO!](https://logstation.netlify.app)
+[DEMO DEPLOYED ON NETLIFY!](https://logstation.netlify.app)
 
+##
 ![Home page](./src/images/default-img/Home-page-screenshot.png)
 ![Home page](./src/images/default-img/log-station-1.png)
 ![Live chat](./src/images/default-img/log-station-2.png)
